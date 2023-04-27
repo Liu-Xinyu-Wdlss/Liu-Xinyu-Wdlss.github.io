@@ -55,18 +55,7 @@
         document.getElementById("phrase").innerHTML = selectedPrompt;
         showGeneratedList();
       }
-            
-            
-      function generate() {
-        if (prompts.length === 0) {
-          document.getElementById("phrase").innerHTML = "No prompts left!";
-          return;
-        }
-        var randomIndex = Math.floor(Math.random() * prompts.length);
-        var selectedPrompt = prompts[randomIndex];
-        prompts.splice(randomIndex, 1);
-        document.getElementById("phrase").innerHTML = selectedPrompt;
-      }
+           
         
               
         function reset() {
