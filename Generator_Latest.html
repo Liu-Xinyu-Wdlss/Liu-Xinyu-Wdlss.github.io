@@ -6,12 +6,12 @@
   </head>
   <body>
     <h1>「Broken Telephone」 Prompt Generator</h1>
-    <p id="phrase"></p>
+    <p id="prompts"></p>
     <button onclick="Generate()">Generate</button>
     <button onclick="Reset()">Reset</button>
     
     <script>
-      var phrases = [
+      var prompts = [
         "Climbing The Mount Everest (ID:1)",
         "Scrolling Through Tik-Tok (ID:2)",
         "Eating A Burger (ID:3)",
@@ -36,18 +36,18 @@
             
             
       function generate() {
-        if (phrases.length === 0) {
-          document.getElementById("phrase").innerHTML = "Oi No Phrases Edi U Still Generate For What!";
+        if (prompts.length === 0) {
+          document.getElementById("phrase").innerHTML = "Oi No Prompts Edi U Still Generate For What!";
           return;
         }
-        var randomIndex = Math.floor(Math.random() * phrases.length);
-        var selectedPhrase = phrases[randomIndex];
-        phrases.splice(randomIndex, 1);
+        var randomIndex = Math.floor(Math.random() * prompts.length);
+        var selectedPhrase = prompts[randomIndex];
+        prompts.splice(randomIndex, 1);
         document.getElementById("phrase").innerHTML = selectedPhrase;
               
               
         function reset() {
-        phrases = [
+        prompts = [
         "Climbing The Mount Everest (ID:1)",
         "Scrolling Through Tik-Tok (ID:2)",
         "Eating A Burger (ID:3)",
