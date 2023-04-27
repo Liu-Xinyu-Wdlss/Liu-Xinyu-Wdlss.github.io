@@ -41,6 +41,20 @@
         //If u have free time, u can add prompt above this line↑ leave a space b4 bracket//
       ];
       
+      var generated = [];
+      
+      function generate() {
+        if (prompts.length === 0) {
+          document.getElementById("phrase").innerHTML = "No prompts left!";
+          return;
+        }
+        var randomIndex = Math.floor(Math.random() * prompts.length);
+        var selectedPrompt = prompts[randomIndex];
+        prompts.splice(randomIndex, 1);
+        generated.push(selectedPrompt);
+        document.getElementById("phrase").innerHTML = selectedPrompt;
+        showGeneratedList();
+      }
             
             
       function generate() {
