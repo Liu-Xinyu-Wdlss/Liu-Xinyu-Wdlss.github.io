@@ -7,7 +7,8 @@
   <body>
     <h1>「Broken Telephone」 Prompt Generator</h1>
     <p id="phrase"></p>
-    <button onclick="generate()">Generate</button>
+    <button onclick="Generate()">Generate</button>
+    <button onclick="Reset()">Reset</button>
     
     <script>
       var phrases = [
@@ -32,6 +33,8 @@
         //If u want, u can add prompt above this line↑ leave a space b4 bracket//
       ];
       
+            
+            
       function generate() {
         if (phrases.length === 0) {
           document.getElementById("phrase").innerHTML = "Oi No Phrases Edi U Still Generate For What!";
@@ -41,6 +44,32 @@
         var selectedPhrase = phrases[randomIndex];
         phrases.splice(randomIndex, 1);
         document.getElementById("phrase").innerHTML = selectedPhrase;
+              
+              
+        function reset() {
+        phrases = [
+        "Climbing The Mount Everest (ID:1)",
+        "Scrolling Through Tik-Tok (ID:2)",
+        "Eating A Burger (ID:3)",
+        "Playing 'Mobile Legend' (ID:4)",
+        "Writing A Composition (ID:5)",
+        "Showering In Cold Water (ID:6)",
+        "'Prompt Deleted' (ID:7)",
+        "Buying A Pencil From A Shop (ID:8)",
+        "Selling Chicken Rice (ID:9)",
+        "Watching Movie In A Cinema (ID:10)",
+        "Prompt 11 (ID:11)",
+        "Prompt 12 (ID:12)",
+        "Prompt 13 (ID:13)",
+        "Prompt 14 (ID:14)",
+        "Prompt 15 (ID:15)",
+        "Prompt 16 (ID:16)",
+        "Prompt 17 (ID:17)",
+        "Prompt 18 (ID:18)",
+        //This part is same as above, ill do the changing if u updated the above part//
+        ];
+        document.getElementById("phrase").innerHTML = "";
+      }
       }
     </script>
   </body>
