@@ -9,6 +9,8 @@
     <p id="phrase"></p>
     <button onclick="generate()">Generate</button>
     <button onclick="reset()">Reset</button>
+    <h2>Generated Phrases:</h2>
+    <ul id="generated-list"></ul>
     
     <script>
       var prompts = [
@@ -81,7 +83,20 @@
         "Prompt 24 (ID:24)",
         //This part is same as above, ill do the changing if u updated the above part//
         ];
+        generated = [];
         document.getElementById("phrase").innerHTML = "";
+        showGeneratedList();
+      }
+      
+      function showGeneratedList() {
+        var generatedList = document.getElementById("generated-list");
+        generatedList.innerHTML = "";
+        for (var i = 0; i < generated.length; i++) {
+          var li = document.createElement("li");
+          li.appendChild(document.createTextNode(generated[i]));
+          generatedList.appendChild(li);
+        }
+      }
       }
     </script>
   </body>
