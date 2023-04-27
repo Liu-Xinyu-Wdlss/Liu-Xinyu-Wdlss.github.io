@@ -30,20 +30,21 @@
         "Prompt 16 (ID:16)",
         "Prompt 17 (ID:17)",
         "Prompt 18 (ID:18)",
-        //If u want, u can add prompt above this line↑ leave a space b4 bracket//
+        //If u have free time, u can add prompt above this line↑ leave a space b4 bracket//
       ];
       
             
             
-      function generate() {
-        if (prompts.length === 0) {
-          document.getElementById("phrase").innerHTML = "Oi No Prompts Edi U Still Generate For What!";
-          return;
-        }
-        var randomIndex = Math.floor(Math.random() * prompts.length);
-        var selectedPhrase = prompts[randomIndex];
-        prompts.splice(randomIndex, 1);
-        document.getElementById("phrase").innerHTML = selectedPhrase;
+      function generate() {
+        if (prompts.length === 0) {
+          document.getElementById("prompts").innerHTML = "No prompts left!";
+          return;
+        }
+        var randomIndex = Math.floor(Math.random() * prompts.length);
+        var selectedPhrase = prompts[randomIndex];
+        prompts.splice(randomIndex, 1);
+        document.getElementById("prompts").innerHTML = selectedPhrase;
+      }
               
               
         function reset() {
@@ -68,7 +69,7 @@
         "Prompt 18 (ID:18)",
         //This part is same as above, ill do the changing if u updated the above part//
         ];
-        document.getElementById("phrase").innerHTML = "";
+        document.getElementById("prompts").innerHTML = "";
       }
       }
     </script>
