@@ -2,5 +2,5 @@
 
 ## Welcome To My Page
 
-**BB People? Click [Here]() for mini games
+**BB People? Click [Here]() for mini games**
 
