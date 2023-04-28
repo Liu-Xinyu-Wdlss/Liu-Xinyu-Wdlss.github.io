@@ -1,134 +1,59 @@
 <!DOCTYPE html>
-<html>
+	
 <head>
-	<title>Tic Tac Toe</title>
-	<h1>「Tic Tac Toe」 ver 0.0.2<h1>
-	<style>
-		#board {
-			border-collapse: collapse;
-		}
-		#board td {
-			border: 1px solid black;
-			height: 100px;
-			width: 100px;
-			text-align: center;
-			font-size: 50px;
-			cursor: pointer;
-		}
-	</style>
+	<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0">
+	
+	<!-- CSS file Included -->
+	<link rel="stylesheet"
+		type="text/css" href="tic.css">
+	
+	<!-- JavaScript file included -->
+	<script src="tic.js"></script>
 </head>
+	
 <body>
-	<table id="board">
-		<tr>
-			<td id="0"></td>
-			<td id="1"></td>
-			<td id="2"></td>
-		</tr>
-		<tr>
-			<td id="3"></td>
-			<td id="4"></td>
-			<td id="5"></td>
-		</tr>
-		<tr>
-			<td id="6"></td>
-			<td id="7"></td>
-			<td id="8"></td>
-		</tr>
-	</table>
+	<div id="main">
+		<h1>「Tic Tac Toe」 ver 0.0.3</h1>
+	
+		<br><br>
 
-	<p id="status"></p>
-
-	<button id="reset-button">Reset</button>
-
-	<script>
-		let board = ["", "", "", "", "", "", "", "", ""];
-		let player = "X";
-		let ai = "O";
-		let game_over = false;
-		
-		const winning_combinations = [
-			[0, 1, 2],
-			[3, 4, 5],
-			[6, 7, 8],
-			[0, 3, 6],
-			[1, 4, 7],
-			[2, 5, 8],
-			[0, 4, 8],
-			[2, 4, 6]
-		];
-
-		function is_board_full(board) {
-			return board.every(cell => cell !== "");
-		}
-
-		function is_winner(player, board) {
-			for (let i = 0; i < winning_combinations.length; i++) {
-				let [a, b, c] = winning_combinations[i];
-				if (board[a] === player && board[b] === player && board[c] === player) {
-					return true;
-				}
-			}
-			return false;
-		}
-
-		function get_random_move(board) {
-			let empty_cells = [];
-			for (let i = 0; i < board.length; i++) {
-				if (board[i] === "") {
-					empty_cells.push(i);
-				}
-			}
-			let random_index = Math.floor(Math.random() * empty_cells.length);
-			return empty_cells[random_index];
-		}
-
-		if (game_over) return;
-		if (board[index] !== "") return;
-		
-		function make_move(player, index) {
-			board[index] = player;
-			game_over = true;
-			document.getElementById(index).textContent = player;
-			if (is_winner(player, board)) {
-				document.getElementById("status").textContent = player + " wins!";
-				disable_board();
-			} else if (is_board_full(board)) {
-				document.getElementById("status").textContent = "Tie game!";
-			game_over = true;
-			disable_board();
-		} else {
-			player = (player === "X") ? "O" : "X";
-			document.getElementById("status").textContent = player + "'s turn";
-
-			if (player === ai) {
-				let ai_move = get_random_move(board);
-				make_move(ai, ai_move);
-
-		function disable_board() {
-			for (let i = 0; i < board.length; i++) {
-			document.getElementById(i).setAttribute("disabled", "disabled");
-		}
-	}
-
-	document.querySelectorAll("#board td").forEach(cell => {
-		cell.addEventListener("click", () => {
-			if (cell.textContent === "") {
-				make_move(player, parseInt(cell.id));
-			}
-		});
-	});
-
-	document.getElementById("reset-button").addEventListener("click", () => {
-		board = ["", "", "", "", "", "", "", "", ""];
-		player = "X";
-		document.querySelectorAll("#board td").forEach(cell => {
-			cell.textContent = "";
-			cell.removeAttribute("disabled");
-		});
-		document.getElementById("status").textContent = "";
-		game_over = false;
-	});
-
-</script>
+		<input type="text" id="b1" onclick=
+			"myfunc_3(); myfunc();" readonly>
+	
+		<input type="text" id="b2" onclick=
+			"myfunc_4(); myfunc();" readonly>
+	
+		<input type="text" id="b3" onclick=
+			"myfunc_5(); myfunc();" readonly>
+		<br><br>
+	
+		<input type="text" id="b4" onclick=
+			"myfunc_6(); myfunc();" readonly>
+				
+		<input type="text" id="b5" onclick=
+			"myfunc_7(); myfunc();" readonly>
+	
+		<input type="text" id="b6" onclick=
+			"myfunc_8(); myfunc();" readonly>
+		<br><br>
+	
+		<input type="text" id="b7" onclick=
+			"myfunc_9(); myfunc();" readonly>
+	
+		<input type="text" id="b8" onclick=
+			"myfunc_10();myfunc();" readonly>
+	
+		<input type="text" id="b9" onclick=
+			"myfunc_11();myfunc();" readonly>
+	
+		<br><br><br>
+		<button id="but" onclick="myfunc_2()">
+			RESET
+		</button>
+	
+		<br><br>
+		<p id="print"></p>
+	</div>
 </body>
 </html>
