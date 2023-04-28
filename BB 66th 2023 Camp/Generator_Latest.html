@@ -3,8 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>「Broken Telephone」Prompt Generator (Beta & Debugging)</title>
+    
+    <script type="text/javascript">
+		function checkPassword() {
+			var password = prompt("Enter the access key to view this page:");
+			if (password == "wdl20222022B") {
+				document.getElementById("content").style.display = "block";
+			} else {
+				alert("Incorrect access key. Please try again.");
+			}
+		}
+	</script>
   </head>
   <body>
+</head>
+<body onload="checkPassword();">
+	<div id="content" style="display:none;">
     <h1>「Broken Telephone」 Prompt Generator (Beta & Debugging)</h1>
     <p id="phrase"></p>
     <button onclick="generate()">Generate</button>
