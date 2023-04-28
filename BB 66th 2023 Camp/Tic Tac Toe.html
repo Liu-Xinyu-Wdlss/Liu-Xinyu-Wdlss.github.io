@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Tic Tac Toe</title>
-	<h1>「Tic Tac Toe」 ver 0.0.1<h1>
+	<h1>「Tic Tac Toe」 ver 0.0.2<h1>
 	<style>
 		#board {
 			border-collapse: collapse;
@@ -41,10 +41,11 @@
 	<button id="reset-button">Reset</button>
 
 	<script>
-		let board = ["", "", "", "", "", "", "", "", ""]; // initialize empty board
-		let player = "X"; // player starts first
-		let ai = "O"; // ai is the second player
-
+		let board = ["", "", "", "", "", "", "", "", ""];
+		let player = "X";
+		let ai = "O";
+		let game_over = false;
+		
 		const winning_combinations = [
 			[0, 1, 2],
 			[3, 4, 5],
@@ -56,12 +57,10 @@
 			[2, 4, 6]
 		];
 
-		// returns true if the board is full
 		function is_board_full(board) {
 			return board.every(cell => cell !== "");
 		}
 
-		// returns true if the specified player has won
 		function is_winner(player, board) {
 			for (let i = 0; i < winning_combinations.length; i++) {
 				let [a, b, c] = winning_combinations[i];
@@ -72,7 +71,6 @@
 			return false;
 		}
 
-		// returns the index of a random empty cell on the board
 		function get_random_move(board) {
 			let empty_cells = [];
 			for (let i = 0; i < board.length; i++) {
@@ -84,31 +82,34 @@
 			return empty_cells[random_index];
 		}
 
-		// updates the board and the UI with the specified move
+		if (game_over) return;
+		if (board[index] !== "") return;
+		
 		function make_move(player, index) {
 			board[index] = player;
+			game_over = true;
 			document.getElementById(index).textContent = player;
 			if (is_winner(player, board)) {
 				document.getElementById("status").textContent = player + " wins!";
 				disable_board();
 			} else if (is_board_full(board)) {
 				document.getElementById("status").textContent = "Tie game!";
-				disable_board();
-			} else {
-				player = ai;
-				let ai_index = get_random_move(board);
-				make_move(ai, ai_index);
-			}
-		}
+			game_over = true;
+			disable_board();
+		} else {
+			player = (player === "X") ? "O" : "X";
+			document.getElementById("status").textContent = player + "'s turn";
 
-		// disables all cells on the board
+			if (player === ai) {
+				let ai_move = get_random_move(board);
+				make_move(ai, ai_move);
+
 		function disable_board() {
 			for (let i = 0; i < board.length; i++) {
 			document.getElementById(i).setAttribute("disabled", "disabled");
 		}
 	}
 
-	// adds event listener to each cell on the board
 	document.querySelectorAll("#board td").forEach(cell => {
 		cell.addEventListener("click", () => {
 			if (cell.textContent === "") {
@@ -117,7 +118,6 @@
 		});
 	});
 
-	// resets the board and UI
 	document.getElementById("reset-button").addEventListener("click", () => {
 		board = ["", "", "", "", "", "", "", "", ""];
 		player = "X";
@@ -126,6 +126,7 @@
 			cell.removeAttribute("disabled");
 		});
 		document.getElementById("status").textContent = "";
+		game_over = false;
 	});
 
 </script>
