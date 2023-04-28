@@ -40,7 +40,6 @@
         "Prompt 24 (ID:24)",
         //If u have free time, u can add prompt above this line↑ leave a space b4 bracket//
       ];
-      
       var generated = [];
       
       function generate() {
@@ -51,7 +50,7 @@
         var randomIndex = Math.floor(Math.random() * prompts.length);
         var selectedPrompt = prompts[randomIndex];
         prompts.splice(randomIndex, 1);
-        generated.unshift(selectedPrompt);
+        generated.push(selectedPrompt);
         document.getElementById("phrase").innerHTML = selectedPrompt;
         showGeneratedList();
       }
@@ -99,7 +98,7 @@
           number.appendChild(document.createTextNode(i + 1 + ". "));
           li.appendChild(number);
           li.appendChild(document.createTextNode(generated[i]));
-          generatedList.insertBefore(li, generatedList.childNodes[0]);
+          generatedList.appendChild(li);
         }
       }
     </script>
