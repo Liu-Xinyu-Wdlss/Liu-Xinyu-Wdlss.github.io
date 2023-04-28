@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tic Tac Toe with AI</title>
+	<title>Tic Tac Toe</title>
 	<h1>「Tic Tac Toe」</h1>
 	<style>
 		#board {
@@ -77,46 +77,29 @@
 
 		function get_random_move(board) {
 			let empty_cells = [];
-			for (let i = 0; i < board.length; i++) {
-				if (board[i] === "") {
-					empty_cells.push(i);
-				}
-			}
-
-			let random_index = Math.floor(Math.random() * empty_cells.length);
-			return empty_cells[random_index];
-		}
-
-		function make_move(player, index) {
-			board[index] = player;
-			document.getElementById(index).textContent = player;
-			if (is_winner(player, board)) {
-				document.getElementById("status").textContent = player + " wins!";
-				disable_board();
-			} 
-      else if (is_board_full(board)) {
-				document.getElementById("status").textContent = "Tie game!";
-				disable_board();
-			} 
-      else {
-				player = ai;
-				let ai_index = get_random_move(board);
-				make_move(ai, ai_index);
-			  }
-		}
-
-		function disable_board() {
-			for (let i = 0; i < board.length; i++) {
+			for (let i = 0; i 0; i < board.length; i++) {
 			document.getElementById(i).setAttribute("disabled", "disabled");
 		}
 	}
 
+	// adds event listener to each cell on the board
 	document.querySelectorAll("#board td").forEach(cell => {
 		cell.addEventListener("click", () => {
 			if (cell.textContent === "") {
 				make_move(player, parseInt(cell.id));
 			}
 		});
+	});
+
+	// resets the board and UI
+	document.getElementById("reset-button").addEventListener("click", () => {
+		board = ["", "", "", "", "", "", "", "", ""];
+		player = "X";
+		document.querySelectorAll("#board td").forEach(cell => {
+			cell.textContent = "";
+			cell.removeAttribute("disabled");
+		});
+		document.getElementById("status").textContent = "";
 	});
 
 </script>
