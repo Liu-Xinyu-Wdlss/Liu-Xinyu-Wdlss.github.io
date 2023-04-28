@@ -94,10 +94,20 @@
         generatedList.innerHTML = "";
         for (var i = 0; i < generated.length; i++) {
           var li = document.createElement("li");
+          var number = document.createElement("span");
+          number.className = "number";
+          number.appendChild(document.createTextNode(i + 1 + ". "));
+          li.appendChild(number);
           li.appendChild(document.createTextNode(generated[i]));
           generatedList.insertBefore(li, generatedList.childNodes[0]);
         }
       }
     </script>
+    
+    <style>
+      .number {
+        font-weight: bold;
+      }
+    </style>
   </body>
 </html>
