@@ -51,7 +51,7 @@
         var randomIndex = Math.floor(Math.random() * prompts.length);
         var selectedPrompt = prompts[randomIndex];
         prompts.splice(randomIndex, 1);
-        generated.push(selectedPrompt);
+        generated.unshift(selectedPrompt);
         document.getElementById("phrase").innerHTML = selectedPrompt;
         showGeneratedList();
       }
@@ -95,7 +95,7 @@
         for (var i = 0; i < generated.length; i++) {
           var li = document.createElement("li");
           li.appendChild(document.createTextNode(generated[i]));
-          generatedList.appendChild(li);
+          generatedList.insertBefore(li, generatedList.childNodes[0]);
         }
       }
     </script>
