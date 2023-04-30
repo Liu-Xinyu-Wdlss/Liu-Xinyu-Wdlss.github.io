@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>「Broken Telephone」Prompt Generator (Beta & Debugging)</title>
+    
+    <script type="text/javascript">
+		function checkPassword() {
+			var password = prompt("Enter the access key to view this page:");
+			if (password == "BB66Camp2023") {
+				alert("Main Access Key Used, DO NOT Leak The Key To Unauthorised Persons");
+				document.getElementById("content").style.display = "block";
+			else {
+				alert("Incorrect access key. Refresh to try again.");
+			}
+		}
+	</script>
+	<body>
+  </head>
+</head>
+<body onload="checkPassword();">
+	<div id="content" style="display:none;">
+	
+    <h1>「Broken Telephone」 Prompt Generator (Beta & Debugging)</h1>
+    <h3>Your Prompt Is: id="phrase"</h3>
+    <button onclick="generate()">Generate</button>
+    <button onclick="reset()">Reset</button>
+    <h2>Generated Prompts:</h2>
+    <ul id="generated-list"></ul>
+    
+    <script>
+	    
+      var prompts = [
+        "Climbing The Mount Everest",
+        "Scrolling Through Tik-Tok",
+        "Eating A Burger",
+        "Playing 'Mobile Legend'",
+        "Writing A Composition",
+        "Showering In Cold Water",
+        "Swimming In A Swimming Pool",
+        "Purchasing A Pencil From A Shop",
+        "Selling Chicken Rice At Hawker Center",
+        "Watching Movie In A Cinema",
+        "Commuting An Aeroplane",
+        "Building Sand Castles",
+        "Repairing A Water Tap",
+        "Helping An Old Lady Cross The Road",
+        "Spilling Beverage While Drinking It",
+        "Borrowing 5 Dollar From A Friend",
+        "Exporting Image From A Powerpoint Slide",
+        "Making A Snowman",
+        "Break An Egg Into A Bowl",
+        "Taking An Exam In The Classroom",
+        "Playing Football In The Field",
+        "Frying Some French Fries",
+        "Setting Up A Distillation Experiment",
+        "Riding A Bicyle In A Park",
+        "Riding A Roller Coaster In The USS",
+        "Staring Out The Window In An Airplane",
+	      "Playing Tic-Tac-Toe",
+	      "Raising The Flag During Flag Raising",
+	      "Finishing Up Last Minute Homework",
+	     	"Polishing Your Boots",
+		    "Throwing Out The Trash",
+		    "Milking A Cow",
+		    "Paddling A Kayak",
+		    "Playing Chess",
+		    "Solving A Rubik’s Cube",
+		    "Playing The Harp",
+	    	"Performing A Yo-Yo Trick",
+		    "Painting A Wall",
+		    "Baking A Cake",
+		    "Losing A Game Of ‘Mobile Legends’",
+		    "Doing A Science Experiment",
+		    "Swimming In The Olympics",
+		    "Purchasing Bubble Tea",
+		    "Scoring A Goal In Football",
+		    "Missing A Basketball Shot",
+		    "Sending A Whatsapp Text",
+		    "Playing Badminton",
+		    "Carrying A Heavy Stack Of Newspapers",
+		    "Waking Up Late Before School",
+		    "Getting Scolded By An Adult",
+		    "Doing Big Business In The Toilet",
+		    "Ordering Food Delivery",
+		    "Accidentally Boarding The Wrong Bus",
+		    "Getting Caught Sleeping In Class",
+      ];
+      var generated = [];
+      
+      function generate() {
+        if (prompts.length === 0) {
+          document.getElementById("phrase").innerHTML = "No prompts left!";
+          return;
+        }
+        var randomIndex = Math.floor(Math.random() * prompts.length);
+        var selectedPrompt = prompts[randomIndex];
+        prompts.splice(randomIndex, 1);
+        generated.push(selectedPrompt);
+        document.getElementById("phrase").innerHTML = selectedPrompt;
+        showGeneratedList();
+      }
+            
+        function reset() {
+        prompts = [
+        "Climbing The Mount Everest",
+        "Scrolling Through Tik-Tok",
+        "Eating A Burger",
+        "Playing 'Mobile Legend'",
+        "Writing A Composition",
+        "Showering In Cold Water",
+        "Swimming In A Swimming Pool",
+        "Purchasing A Pencil From A Shop",
+        "Selling Chicken Rice At Hawker Center",
+        "Watching Movie In A Cinema",
+        "Commuting An Aeroplane",
+        "Building Sand Castles",
+        "Repairing A Water Tap",
+        "Helping An Old Lady Cross The Road",
+        "Spilling Beverage While Drinking It",
+        "Borrowing 5 Dollar From A Friend",
+        "Exporting Image From A Powerpoint Slide",
+        "Making A Snowman",
+        "Break An Egg Into A Bowl",
+        "Taking An Exam In The Classroom",
+        "Playing Football In The Field",
+        "Frying Some French Fries",
+        "Setting Up A Distillation Experiment",
+        "Riding A Bicyle In A Park",
+        "Riding A Roller Coaster In The USS",
+        "Staring Out The Window In An Airplane",
+	      "Playing Tic-Tac-Toe",
+	      "Raising The Flag During Flag Raising",
+	      "Finishing Up Last Minute Homework",
+	     	"Polishing Your Boots",
+		    "Throwing Out The Trash",
+		    "Milking A Cow",
+		    "Paddling A Kayak",
+		    "Playing Chess",
+		    "Solving A Rubik’s Cube",
+		    "Playing The Harp",
+	    	"Performing A Yo-Yo Trick",
+		    "Painting A Wall",
+		    "Baking A Cake",
+		    "Losing A Game Of ‘Mobile Legends’",
+		    "Doing A Science Experiment",
+		    "Swimming In The Olympics",
+		    "Purchasing Bubble Tea",
+		    "Scoring A Goal In Football",
+		    "Missing A Basketball Shot",
+		    "Sending A Whatsapp Text",
+		    "Playing Badminton",
+		    "Carrying A Heavy Stack Of Newspapers",
+		    "Waking Up Late Before School",
+		    "Getting Scolded By An Adult",
+		    "Doing Big Business In The Toilet",
+		    "Ordering Food Delivery",
+		    "Accidentally Boarding The Wrong Bus",
+		    "Getting Caught Sleeping In Class",
+        ];
+        generated = [];
+        document.getElementById("phrase").innerHTML = "";
+        showGeneratedList();
+      }
+      
+      function showGeneratedList() {
+        var generatedList = document.getElementById("generated-list");
+        generatedList.innerHTML = "";
+        for (var i = 0; i < generated.length; i++) {
+          var li = document.createElement("li");
+          var number = document.createElement("span");
+          number.className = "number";
+          number.appendChild(document.createTextNode(i + 1 + ". "));
+          li.appendChild(number);
+          li.appendChild(document.createTextNode(generated[i]));
+          generatedList.appendChild(li);
+        }
+      }
+    </script>
+    
+    <style>
+      .number {
+        font-weight: bold;
+      }
+    </style>
+  </body>
+</html>
