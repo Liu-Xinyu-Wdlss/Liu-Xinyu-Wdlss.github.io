@@ -234,8 +234,25 @@ function myfunc() {
 
 function clearBoard() {
   for (var i = 1; i <= 9; i++) {
-    document.getElementById("b" + i).value = "";
-    document.getElementById("b" + i).disabled = false;
+    document.getElementById("b1").value = "";
+    document.getElementById("b2").value = "";
+    document.getElementById("b3").value = "";
+    document.getElementById("b4").value = "";
+    document.getElementById("b5").value = "";
+    document.getElementById("b6").value = "";
+    document.getElementById("b7").value = "";
+    document.getElementById("b8").value = "";
+    document.getElementById("b9").value = "";
+	  
+    document.getElementById("b1").disabled = false;
+    document.getElementById("b2").disabled = false;
+    document.getElementById("b3").disabled = false;
+    document.getElementById("b4").disabled = false;
+    document.getElementById("b5").disabled = false;
+    document.getElementById("b6").disabled = false;
+    document.getElementById("b7").disabled = false;
+    document.getElementById("b8").disabled = false;
+    document.getElementById("b9").disabled = false;
   }
 }
 
