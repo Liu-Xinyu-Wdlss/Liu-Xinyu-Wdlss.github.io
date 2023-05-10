@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>「The Mystery Meal」 Quiz</title>
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+      
+        h1 {
+          text-align: center;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          font-size: 36px;
+        }
+      
+        h2 {
+          margin-top: 30px;
+          margin-bottom: 10px;
+          margin-left: 20px;
+          font-size: 24px;
+        }
+
+        h3 {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          margin-left: 20px;
+          font-size: 18px;
+        }
+      
+        p {
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+      
+        form {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #f2f2f2;
+          border-radius: 5px;
+        }
+      
+        h3 {
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+      
+        label {
+          display: block;
+          margin-bottom: 10px;
+        }
+      
+        input[type="radio"],
+        input[type="number"] {
+          margin-right: 10px;
+        }
+      
+        input[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          margin-top: 20px;
+        }
+      
+        input[type="submit"]:hover {
+          background-color: #3e8e41;
+        }
+      
+        #timer {
+          position: fixed;
+          top: 0;
+          left: 0;
+          background-color: #f2f2f2;
+          padding: 10px;
+          font-size: 24px;
+          font-weight: bold;
+          margin-left: 0.5em
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-left: 20px
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+        input[type="radio"] {
+        display: none;
+        }
+        label.choice {
+        display: block;
+        padding: 10px;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+        label.choice:hover {
+        background-color: #f5f5f5;
+        }
+        input[type="radio"]:checked + label.choice {
+        background-color: #007bff;
+        color: #fff;
+        }
+
+      </style>
+      
+      
+  </head>
+  <body>
+    <h1>「The Mystery Meal」Quiz</h1>
+    <h2>Second Title</h2>
+    <h3>Description</h3> 
+
+    <button onclick="startTimer()">Click to Begin</button>
+    <div id="timer"></div>
+    <div id="quiz" style="display:none;">
+        <form>
+        <div class="question">
+
+            <div>
+                <p>Question 1:</p>
+                <label class="choice">
+                    <input type="radio" name="q1" value="incorrect">
+                    Choice 1
+                </label>
+                <label class="choice">
+                    <input type="radio" name="q1" value="incorrect">
+                    Choice 2
+                </label>
+                <label class="choice">
+                    <input type="radio" name="q1" value="correct">
+                    Choice 3
+                </label>
+            </div>
+
+            <div>
+                <p>Question 2:</p>
+                <label class="choice">
+                    <input type="radio" name="q2" value="incorrect">
+                    Choice 1
+                </label>
+                <label class="choice">
+                    <input type="radio" name="q2" value="incorrect">
+                    Choice 2
+                </label>
+                <label class="choice">
+                    <input type="radio" name="q2" value="correct">
+                    Choice 3
+                </label>
+                </div>
+
+            <input type="submit" value="Submit" onclick="checkScore()">
+          </form>
+    </div>
+
+    <script>
+      var timeLeft = 10;
+
+      function startTimer() {
+        var timerDiv = document.getElementById("timer");
+        var quizDiv = document.getElementById("quiz");
+        var startBtn = document.getElementById("startBtn");
+        
+        //startBtn.removeEventListener("click", startTimer); //got problem, delete then button will work
+
+        timerDiv.innerHTML = "Time Left: " + formatTime(timeLeft);
+        quizDiv.style.display = "block";
+
+        var timerInterval = setInterval(function() {
+            timeLeft--;
+            if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Time's up! Quiz has ended.");
+            checkScore();
+            } 
+            else {
+            timerDiv.innerHTML = "Time Left: " + formatTime(timeLeft);
+            }
+        }, 1000);
+        }
+
+      function formatTime(timeInSeconds) {
+        var minutes = Math.floor(timeInSeconds / 60);
+        var seconds = timeInSeconds % 60;
+        if (seconds < 10) {
+          return minutes + ":0" + seconds;
+        } else {
+          return minutes + ":" + seconds;
+        }
+      }
+      </script>
+
+      <script>
+      function checkScore() {
+        var score = 0;
+        var total = 0;
+        var feedback = "";
+
+        var questions = document.forms[0].getElementsByTagName("div");
+        for (var i = 0; i < questions.length; i++) {
+            var radios = questions[i].getElementsByTagName("input");
+            var anyChecked = false;
+            for (var j = 0; j < radios.length; j++) {
+            if (radios[j].checked) {
+            anyChecked = true;
+                if (radios[j].value === "correct") {
+                score++;
+                }
+                break;
+            }
+            }
+            if (anyChecked) {
+            total++;
+            }
+        }
+
+        feedback = "You scored " + score + " out of " + total;
+
+        var feedbackDiv = document.getElementById("feedback");
+        feedbackDiv.innerHTML = feedback;
+        }
+
+
+    </script>
+  </body>
+</html>
