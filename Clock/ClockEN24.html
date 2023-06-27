@@ -307,8 +307,8 @@ span{
     font-size: 49px;
     font-family: cursive;
     background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
-    -webkit-text-fill-color: transparent;/* 将字体设置成透明色 */
-    -webkit-background-clip: text;/* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
     -webkit-background-size: 200% 100%; 
     -webkit-animation: masked-animation 4s linear infinite;
 }
@@ -333,11 +333,11 @@ span{
  
 <script>
 var monthText=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-var dayText=["Zero One","Zero Two","Zero Three","Zero Four","Zero Five","Zero Six","Zero Seven","Zero Eight","Zero Nine","One Zero","One One","One Two","十三号","十四号","十五号","十六号","十七号","十八号","十九号","二十号","二十一","二十二","二十三","二十四","二十五","二十六","二十七","二十八","二十九","三十号","三十一"];
+var dayText=["Zero One","Zero Two","Zero Three","Zero Four","Zero Five","Zero Six","Zero Seven","Zero Eight","Zero Nine","One Zero","One One","One Two","One Three","One Four","One Five","One Six","One Seven","One Eight","One Nine","Two Zero","Twenty One","Twenty Two","Twenty Three","Twenty Four","Twenty Five","twenty Six","Twenty Seven","Twenty Eight","Twenty Nine","Three Zero","Thirty One"];
 var weekText=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-var hourText=["Zero O'Clock","Zero One O'Clock","Zero Two O'Clock","Zero三O'Clock","Zero四O'Clock","Zero五O'Clock","Zero六O'Clock","Zero七O'Clock","Zero八O'Clock","Zero九O'Clock","Zero十O'Clock","十一O'Clock","十二O'Clock","十三O'Clock","十四O'Clock","十五O'Clock","十六O'Clock","十七O'Clock","十八O'Clock","十九O'Clock","二十O'Clock","二十一","二十二","二十三"];
-var minuteText=["Zero一分","Zero二分","Zero三分","Zero四分","Zero五分","Zero六分","Zero七分","Zero八分","Zero九分","Zero十分","十一分","十二分","十三分","十四分","十五分","十六分","十七分","十八分","十九分","二十分","二十一","二十二","二十三","二十四","二十五","二十六","二十七","二十八","二十九","三十分","三十一","三十二","三十三","三十四","三十五","三十六","三十七","三十八","三十九","四十分","四十一","四十二","四十三","四十四","四十五","四十六","四十七","四十八","四十九","五十分","五十一","五十二","五十三","五十四","五十五","五十六","五十七","五十八","五十九","六十分"];
-var secondsText=["Zero一秒","Zero二秒","Zero三秒","Zero四秒","Zero五秒","Zero六秒","Zero七秒","Zero八秒","Zero九秒","Zero十秒","十一秒","十二秒","十三秒","十四秒","十五秒","十六秒","十七秒","十八秒","十九秒","二十秒","二十一","二十二","二十三","二十四","二十五","二十六","二十七","二十八","二十九","三十秒","三十一","三十二","三十三","三十四","三十五","三十六","三十七","三十八","三十九","四十秒","四十一","四十二","四十三","四十四","四十五","四十六","四十七","四十八","四十九","五十秒","五十一","五十二","五十三","五十四","五十五","五十六","五十七","五十八","五十九","六十秒"];
+var hourText=["Twenty Four O'Clock","Zero One O'Clock","Zero Two O'Clock","Zero Three O'Clock","Zero Four O'Clock","Zero Five O'Clock","Zero Six O'Clock","Zero Seven O'Clock","Zero Eight O'Clock","Zero Nine O'Clock","One Zero O'Clock","One One O'Clock","One Two O'Clock","One Three O'Clock","One Four O'Clock","One Five O'Clock","One Six O'Clock","One Seven O'Clock","One Eight O'Clock","One Nine O'Clock","Two Zero O'Clock","Twenty One O'Clock","Twenty Two O'Clock","Twenty Three O'clock"];
+var minuteText=["Zero One Minute","Zero Two Minute","Zero Three Minute","Zero Four Minute","Zero Five Minute","Zero Six Minute","Zero Seven Minute","Zero Eight Minute","Zero Nine Minute","One Zero Minute","One One Minute","One Two Minute","One Three Minute","One Four Minute","One Five Minute","One Six Minute","One Seven Minute","One Eight Minute","One Nine Minute","Two Zero Minute","Twenty One Minute","Twenty Two Minute","Twenty Three Minute","Twenty Four Minute","Twenty Five Minute","二十六","二十七","二十八","二十九","三十分","三十一","三十二","三十三","三十四","三十五","三十六","三十七","三十八","三十九","四十分","四十一","四十二","四十三","四十四","四十五","四十六","四十七","四十八","四十九","五十分","五十一","五十二","五十三","五十四","五十五","五十六","五十七","五十八","五十九","六十分"];
+var secondsText=["Zero One Second","Zero Two Second","Zero三秒","Zero四秒","Zero五秒","Zero六秒","Zero七秒","Zero八秒","Zero九秒","Zero十秒","十一秒","十二秒","十三秒","十四秒","十五秒","十六秒","十七秒","十八秒","十九秒","二十秒","二十一","二十二","二十三","二十四","二十五","二十六","二十七","二十八","二十九","三十秒","三十一","三十二","三十三","三十四","三十五","三十六","三十七","三十八","三十九","四十秒","四十一","四十二","四十三","四十四","四十五","四十六","四十七","四十八","四十九","五十秒","五十一","五十二","五十三","五十四","五十五","五十六","五十七","五十八","五十九","六十秒"];
 var clock;var monthList=[];
 var dayList=[];
 var weekList=[];
