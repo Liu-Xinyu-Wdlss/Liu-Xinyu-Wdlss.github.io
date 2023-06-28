@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+    <style>
+        html{
+            background: #000;
+            color: #666;
+            font-size: 12px;
+            overflow:hidden;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        span{
+            display: block;
+            float: left;
+        }
+        .on{
+            color: #fff;
+        }
+        .wrapper{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin-top: -100px;
+            margin-left: -100px;
+        }
+        .wrapper .timebox{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 0;
+            left:0;
+            border-radius: 100%;
+            transition: all 0.5s;
+        }
+        .timebox span{
+            transition: all 0.5s;
+            float: left;
+        }
+        .wrapper  .timebox span{
+            position: absolute;
+            left:50%;
+            top:50%;
+            width: 40px;
+            height: 18px;
+            margin-top: -9px;
+            margin-left: -20px;
+            text-align: right;
+        }
+        .special{
+            width:40px;
+            height:40px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin:-22px 0 0 -22px;
+            font-size: 40px;
+            color: red;
+            border:1px solid #008800;
+            border-radius:5px;
+            font-family: cursive;
+            background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
+            -webkit-text-fill-color: transparent;/* 将字体设置成透明色 */
+            -webkit-background-clip: text;/* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+            -webkit-background-size: 200% 100%; 
+            -webkit-animation: masked-animation 4s linear infinite;
+        }
+        @keyframes masked-animation {
+            0% {
+                background-position: 0  0;
+            }
+            100% {
+                background-position: -100%  0;
+            }
+        }
+ 
+    </style>
+</head>
+<body>
+ 
+<span class="special">系统姐姐</span>
+<div id="wrapper">
+    <div class="timebox yuebox" id="yueBox"></div>
+    <div class="timebox riqiBox" id="riqiBox"></div>
+    <div class="timebox hourbox" id="hourbox"></div>
+    <div class="timebox minutebox" id="minutebox"></div>
+    <div class="timebox secondbox" id="secondbox"></div>
+</div>
+ 
+</body>
+<script>
+ 
+    let wrapper = document.getElementById("wrapper");
+    let yueBox = document.getElementById("yueBox");
+    let riqiBox = document.getElementById("riqiBox");
+    let hourbox = document.getElementById("hourbox");
+    let minutebox = document.getElementById("minutebox");
+    let secondbox = document.getElementById("secondbox");
+ 
+    /*
+    * 找所有的东西标签函数
+    * */
+    let findSiblings = function( tag ){
+        let parent = tag.parentNode;
+        let childs = parent.children;
+        let sb = [];
+        for(let i=0 ; i <= childs.length-1 ; i++){
+            if( childs[i]!==tag){
+                sb[sb.length] = childs[i];
+            }
+        }
+        return  sb ;
+    };
+ 
+    /*
+    * 去掉所有兄弟的类
+    * */
+    let removeSiblingClass =function( tag ){
+        let sb = findSiblings( tag );
+        for(let i=0 ;  i <= sb.length-1 ; i++){
+            sb[i].className = "";
+        }
+    };
+ 
+    /*
+    * 初始化月份函数
+    * */
+    let initMonth = function(){
+      for(let i=1; i<=12; i++){
+            let span = document.createElement("span");
+            span.innerHTML = i+"月";
+            yueBox.appendChild( span );
+      }
+    };
+ 
+    // 初始化日期
+    let initDate = function(){
+        for(let i=1; i<=31; i++){
+            let span = document.createElement("span");
+            span.innerHTML = i+"日";
+            riqiBox.appendChild( span );
+        }
+    };
+ 
+    // 初始化小时，分钟，秒
+    let initHour = function(){
+        for(let i=0; i<=23; i++){
+            let h = i ;
+            let span = document.createElement("span");
+            if( h<10){
+                h="0"+h;
+            }
+            span.innerHTML = h +"点";
+            hourbox.appendChild( span );
+        }
+    };
+    let initMinute = function(){
+        for(let i=0; i<=59; i++){
+            let  f = i ;
+            let span = document.createElement("span");
+            if( f<10){
+                f="0"+f;
+            }
+            span.innerHTML = f +"分";
+            minutebox.appendChild( span );
+        }
+    };
+    let initSecond = function(){
+        for(let i=0; i<=59; i++){
+            let  miao = i ;
+            let span = document.createElement("span");
+            if( miao<10){
+                miao="0"+miao;
+            }
+            span.innerHTML = miao +"秒";
+            secondbox.appendChild( span );
+        }
+    };
+ 
+    // 时间文字样式切换函数
+    let changeTime = function(tag){
+        tag.className = "on";
+        removeSiblingClass( tag );
+    };
+ 
+    /*
+    * 初始化日历函数
+    * */
+    let initRili = function(){
+        initMonth(); // 初始化月份
+        initDate(); // 初始化日期
+        initHour(); // 小时
+        initMinute();
+        initSecond();
+    };
+ 
+    /*
+    * 展示当前时间
+    * 参数：mydate 时间对象
+    * */
+    let  showNow = function( mydate ){
+ 
+        let yue = mydate.getMonth() ;
+        let riqi = mydate.getDate();
+        let hour = mydate.getHours()  ;
+        let minute = mydate.getMinutes();
+        let second = mydate.getSeconds();
+        // 时间文字样式切换函数
+        changeTime( yueBox.children[yue] );
+        changeTime( riqiBox.children[riqi-1] );
+        changeTime( hourbox.children[hour] );
+        changeTime( minutebox.children[minute] );
+        changeTime( secondbox.children[second] );
+ 
+    };
+ 
+    // 展示时间圆圈函数
+    // tag：目标
+    // num：数字数量
+    // dis：圆圈半径
+    let textRound = function(tag,num,dis){
+        let span = tag.children ;
+        for(let i=0 ; i<=span.length-1; i++){
+            span[i].style.transform="rotate("+ (360/span.length)*i+"deg)  translateX("+dis+"px)" ;
+        }
+    };
+    /*
+    * 旋转指定“圆圈”指定度数
+    * */
+    let rotateTag = function(tag , deg){
+        tag.style.transform = "rotate("+deg+"deg)";
+    };
+ 
+    let main = function(){
+        initRili(); // 初始化日历
+ 
+        setInterval(function(){
+            let mydate = new Date();
+            showNow( mydate ); // 展示当前时间
+        },1000);
+ 
+        //  n秒后，摆出圆形
+        setTimeout(function(){
+            wrapper.className = "wrapper";
+            textRound(yueBox,12,40);
+            textRound(riqiBox,31,80);
+            textRound(hourbox,24,120);
+            textRound(minutebox,60,160);
+            textRound(secondbox,60,200);
+            setInterval(function(){
+                let mydate = new Date();
+                rotateTag( yueBox , -30*mydate.getMonth());
+                rotateTag( riqiBox , -360/31*(mydate.getDate()-1) );
+                rotateTag( hourbox , -360/24*mydate.getHours());
+                rotateTag( minutebox , -6*mydate.getMinutes());
+                rotateTag( secondbox , -6*mydate.getSeconds());
+            },1000)
+        },1000)
+ 
+    };
+    main();
+   
+</script>
+</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>罗盘时钟</title>
+<style>
+*{
+    margin:0;
+    padding:0
+}
+html,body{
+    width:97%;
+    height:97%;
+    background-color:#000;
+    overflow:hidden
+}
+#clock{
+    position:relative;
+    width:100%;
+    height:100%;
+    background:#000
+}
+.label{
+    display:inline-block;
+    color:#4d4d4d;
+    text-align:center;
+    padding:0 5px;
+    font-size:19px;
+    transition:left 1s,top 1s;
+    transform-origin:0% 0%
+}
+span{
+    position: absolute;
+    left: 52%;
+    top: 50%;
+    color: red;
+    transform: rotate(-90deg);
+    font-size: 49px;
+    font-family: cursive;
+    background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
+    -webkit-text-fill-color: transparent;/* 将字体设置成透明色 */
+    -webkit-background-clip: text;/* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+    -webkit-background-size: 200% 100%; 
+    -webkit-animation: masked-animation 4s linear infinite;
+}
+@keyframes masked-animation {
+    0% {
+        background-position: 0  0;
+    }
+    100% {
+        background-position: -100%  0;
+    }
+}
+ 
+</style>
+ 
+ 
+</head>
+<body>
+ 
+<div id="clock"><span>神っぽいな✧✦✧銀狼۝</span></div>
+ 
+</body>
+ 
+<script>
+var monthText=["正月","贰月","叁月","肆月","伍月","陆月","柒月","捌月","玖月","拾月","冬月","臘月"];
+var dayText=["零壹日","零贰日","零叁日","零肆日","零伍日","零陆日","零柒日","零捌日","零玖日","拾零日","拾壹日","拾贰日","拾叁日","拾肆日","拾伍日","拾陆日","拾柒日","拾捌日","拾玖日","贰拾日","廿壹日","廿贰日","廿叁日","廿肆日","廿伍日","廿陆日","廿柒日","廿捌日","廿玖日","叁拾日","卅壹"];
+var weekText=["禮拜日","禮拜壹","禮拜贰","禮拜叁","禮拜肆","禮拜伍","禮拜陆"];
+var hourText=["子時","子時","丑時","丑時","寅時","寅時","卯時","卯時","辰時","辰時","巳時","巳時","午時","午時","未時","未時","申時","申時","酉時","酉時","戌時","戌時","亥時","亥時"];
+var minuteText=["零壹分","零贰分","零叁分","零肆分","零伍分","零陆分","零柒分","零捌分","零玖分","零拾分","拾壹分","拾贰分","拾叁分","拾肆分","拾伍分","拾陆分","拾柒分","拾捌分","拾玖分","贰拾分","廿壹分","廿贰分","廿叁分","廿肆分","廿伍分","廿陆分","廿柒分","廿捌分","廿玖分","叁拾分","卅壹","卅贰","卅叁","卅肆","卅伍","卅陆","卅柒","卅捌","卅玖","肆拾分","肆拾壹","肆拾贰","肆拾叁","肆拾肆","肆拾伍","肆拾陆","肆拾柒","肆拾捌","肆拾玖","伍拾分","伍拾壹","伍拾贰","伍拾叁","伍拾肆","伍拾伍","伍拾陆","伍拾柒","伍拾捌","伍拾玖","陆拾分"];
+var secondsText=["零壹秒","零贰秒","零叁秒","零肆秒","零伍秒","零陆秒","零柒秒","零捌秒","零玖秒","零拾秒","拾壹秒","拾贰秒","拾叁秒","拾肆秒","拾伍秒","拾陆秒","拾柒秒","拾捌秒","拾玖秒","贰拾秒","廿壹","廿贰","廿叁","廿肆","廿伍","廿陆","廿柒","廿捌","廿玖","叁拾秒","卅壹","卅贰","卅叁","卅肆","卅伍","卅陆","卅柒","卅捌","卅玖","肆拾秒","肆拾壹","肆拾贰","肆拾叁","肆拾肆","肆拾伍","肆拾陆","肆拾柒","肆拾捌","肆拾玖","伍拾秒","伍拾壹","伍拾贰","伍拾叁","伍拾肆","伍拾伍","伍拾陆","伍拾柒","伍拾捌","伍拾玖","陆拾秒"];
+var clock;var monthList=[];
+var dayList=[];
+var weekList=[];
+var hourList=[];
+var minuteList=[];
+var secondsList=[];
+var isCircle=false;
+var textSet=[[monthText,monthList],
+[dayText,dayList],
+[weekText,weekList],
+[hourText,hourList],
+[minuteText,minuteList],
+[secondsText,secondsList]];
+window.onload=function()
+{
+    init();
+    setInterval(function()
+    {runTime();
+    },100);
+    changePosition();
+    setTimeout(function()
+    {changeCircle();
+    },1000);
+}
+function init()
+{clock=document.getElementById('clock');
+for(var i=0;
+    i<textSet.length;i++)
+    {for(var j=0;j<textSet[i][0].length;j++)
+        {var temp=createLabel(textSet[i][0][j]);
+            clock.appendChild(temp);textSet[i][1].push(temp);
+        }
+    }
+}
+function createLabel(text)
+{
+    var div=document.createElement('div');
+div.classList.add('label');
+div.innerText=text;return div;
+}
+function runTime()
+{
+    var now=new Date();
+    var month=now.getMonth();
+    var day=now.getDate();
+    var week=now.getDay();
+    var hour=now.getHours();
+    var minute=now.getMinutes();
+    var seconds=now.getSeconds();
+    initStyle();
+    var nowValue=[month,day-1,week,hour,minute,seconds];
+    for(var i=0;
+        i<nowValue.length;
+        i++)
+        {var num=nowValue[i];
+            textSet[i][1][num].style.color='#fff';
+        }
+if(isCircle)
+{var widthMid=document.body.clientWidth/2;
+    var heightMid=document.body.clientHeight/2;
+    for(var i=0;
+        i<textSet.length;
+        i++){for(var j=0;
+            j<textSet[i][0].length;
+            j++){var r=(i+1)*35+50*i;
+                var deg=360/textSet[i][1].length*(j-nowValue[i]);
+                var x=r*Math.sin(deg*Math.PI/180)+widthMid;
+                var y=heightMid-r*Math.cos(deg*Math.PI/180);
+                var temp=textSet[i][1][j];
+                temp.style.transform='rotate('+(-90+deg)+'deg)';
+                temp.style.left=x+'px';
+                temp.style.top=y+'px';
+            }
+        }
+    }
+}
+function initStyle()
+{var label=document.getElementsByClassName('label');
+for(var i=0;
+    i<label.length;i++)
+    {label[i].style.color='#4d4d4d';
+}
+}
+function changePosition()
+{
+    for(let i=0;i<textSet.length;
+        i++)
+        {
+            for(let j=0;
+                j<textSet[i][1].length;
+                j++){
+                    let tempX=textSet[i][1][j].offsetLeft+"px";
+                    let tempY=textSet[i][1][j].offsetTop+"px";
+                    setTimeout(function(){
+                        textSet[i][1][j].style.position="absolute";
+                        textSet[i][1][j].style.left=tempX;textSet[i][1][j].style.top=tempY;
+                    },50);
+                }
+            }
+        }
+function changeCircle()
+{
+    isCircle=true;
+    clock.style.transform="rotate(90deg)";
+}
+ 
+</script>
+</html>
+View Code
+<!DOCTYPE html>
+<html lang="en" >
+ 
+<head>
+ 
+  <meta charset="UTF-8">
+  
+<meta name="apple-mobile-web-app-title" content="CodePen">
+ 
+  <title>数字时钟</title>
+  
+<style>
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  overflow: hidden;
+}
+h1{
+  color: #0BFDFD;
+  font-weight: normal;
+  text-align: center;
+  cursor: pointer;
+}
+.g-number-group{
+  position: relative;
+}
+.g-number-group:last-of-type::after,.g-number-group:last-of-type::before{
+  display: none;
+}
+.g-number-group::before,.g-number-group::after{
+  content: '';
+  display: block;
+  position: absolute;
+  transform: translateZ(50px);
+  right: 1vw;
+  width: 0.5vw;
+  height: 0.5vw;
+  background: #0BFDFD;
+  animation: point 2s linear infinite;
+}
+.g-number-group::before{
+  bottom: 6vw;
+}
+.g-number-group::after{
+  top: 2vw;
+}
+ 
+@keyframes point{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+ 
+.g-number-group{
+  display: inline-block;
+}
+ 
+.g-number-container {
+  position: relative;
+  margin-top: 10vh;
+  text-align: center;
+  z-index: 999;
+}
+ 
+.g-number-rotate {
+  -webkit-transform: rotateX(20deg) rotateZ(0);
+          transform: rotateX(20deg) rotateZ(0);
+}
+ 
+.preserve {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+ 
+.g-number {
+  position: relative;
+  width: 3vw;
+  height: 12vw;
+  display: inline-block;
+  margin: 3vw 3vw 0 0;
+}
+.g-number .g-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3vw;
+  height: 2px;
+  background: #181919;
+  /* background: #f00; */
+}
+ 
+.g-number .g-line:nth-child(1) {
+  transform: translateY(-0.2vw);
+}
+.g-number .g-line:nth-child(2) {
+  top: 3.2vw;
+}
+ 
+.g-number .g-line:nth-child(3) {
+  transform: rotate(180deg) translateY(-0.2vw);
+  top: 6.4vw;
+}
+.g-number .g-line:nth-child(4){
+  transform: rotate(90deg) translateY(0.2vw);
+  transform-origin: 0 center;
+}
+.g-number .g-line:nth-child(5) {
+  transform: rotate(-90deg) translateY(0.2vw);
+  transform-origin: 100% center;
+}
+.g-number .g-line:nth-child(6) {
+  top: 3.4vw;
+  transform: rotate(90deg) translateY(0.2vw);
+  transform-origin: 0 center;
+}
+.g-number .g-line:nth-child(7) {
+  top: 3.4vw;
+  transform: rotate(-90deg) translateY(0.2vw);
+  transform-origin: 100% center;
+}
+.g-number .g-line::before,
+.g-number .g-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #34eabc;
+  box-shadow: 0 0 1vw #111414, inset 0 0 0.125vmin #0BFDFD;
+}
+.g-number .g-line::before {
+  left: 0;
+  right: 50%;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
+}
+.g-number .g-line::after {
+  left: 50%;
+  right: 0;
+  transition: all .5s ease-out;
+}
+ 
+.g-number .translate::before, .g-number .translate::after {
+    transform: translateZ(50px);
+}
+ 
+.g-comma {
+  position: relative;
+  top: -5.4vw;
+  display: inline-block;
+  width: 1vw;
+  height: 1vw;
+  background: #181919;
+  margin: 3vw 3vw 0 -0.8vw;
+}
+.g-comma::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #34eabc;
+  -webkit-transform: translateZ(50px);
+          transform: translateZ(50px);
+}
+.g-comma::after {
+  content: "";
+  position: absolute;
+  bottom: -.8vw;
+  right: .3vw;
+  border: .2vw solid transparent;
+  border-top: 0.9vw solid #34eabc;
+  -webkit-transform: translateZ(50px) rotate(40deg);
+          transform: translateZ(50px) rotate(40deg);
+}
+ 
+.g-number[data-digit="1"] .g-line:nth-child(1)::before, 
+.g-number[data-digit="1"] .g-line:nth-child(1)::after,
+.g-number[data-digit="1"] .g-line:nth-child(2)::before,
+.g-number[data-digit="1"] .g-line:nth-child(2)::after,
+.g-number[data-digit="1"] .g-line:nth-child(3)::before,
+.g-number[data-digit="1"] .g-line:nth-child(3)::after,
+.g-number[data-digit="1"] .g-line:nth-child(4)::before,
+.g-number[data-digit="1"] .g-line:nth-child(4)::after,
+.g-number[data-digit="1"] .g-line:nth-child(6)::before,
+.g-number[data-digit="1"] .g-line:nth-child(6)::after,
+ 
+.g-number[data-digit="2"] .g-line:nth-child(4)::before,
+.g-number[data-digit="2"] .g-line:nth-child(4)::after,
+.g-number[data-digit="2"] .g-line:nth-child(7)::before,
+.g-number[data-digit="2"] .g-line:nth-child(7)::after,
+ 
+.g-number[data-digit="3"] .g-line:nth-child(4)::before,
+.g-number[data-digit="3"] .g-line:nth-child(4)::after,
+.g-number[data-digit="3"] .g-line:nth-child(6)::before,
+.g-number[data-digit="3"] .g-line:nth-child(6)::after,
+ 
+.g-number[data-digit="4"] .g-line:nth-child(1)::before,
+.g-number[data-digit="4"] .g-line:nth-child(1)::after,
+.g-number[data-digit="4"] .g-line:nth-child(3)::before,
+.g-number[data-digit="4"] .g-line:nth-child(3)::after,
+.g-number[data-digit="4"] .g-line:nth-child(6)::before,
+.g-number[data-digit="4"] .g-line:nth-child(6)::after,
+ 
+.g-number[data-digit="5"] .g-line:nth-child(5)::before,
+.g-number[data-digit="5"] .g-line:nth-child(5)::after,
+.g-number[data-digit="5"] .g-line:nth-child(6)::before,
+.g-number[data-digit="5"] .g-line:nth-child(6)::after,
+ 
+.g-number[data-digit="6"] .g-line:nth-child(5)::before,
+.g-number[data-digit="6"] .g-line:nth-child(5)::after,
+ 
+.g-number[data-digit="7"] .g-line:nth-child(2)::before,
+.g-number[data-digit="7"] .g-line:nth-child(2)::after,
+.g-number[data-digit="7"] .g-line:nth-child(3)::before,
+.g-number[data-digit="7"] .g-line:nth-child(3)::after,
+.g-number[data-digit="7"] .g-line:nth-child(4)::before,
+.g-number[data-digit="7"] .g-line:nth-child(4)::after,
+.g-number[data-digit="7"] .g-line:nth-child(6)::before,
+.g-number[data-digit="7"] .g-line:nth-child(6)::after,
+ 
+.g-number[data-digit="9"] .g-line:nth-child(6)::before,
+.g-number[data-digit="9"] .g-line:nth-child(6)::after,
+.g-number[data-digit="0"] .g-line:nth-child(2)::before,
+.g-number[data-digit="0"] .g-line:nth-child(2)::after {
+  -webkit-transform: translateZ(25px);
+          transform: translateZ(25px);
+  background: #3c4444;
+  box-shadow: 0 0 1vw #425454;
+}
+ 
+</style>
+ 
+</head>
+ 
+<body translate="no" >
+  <h1>
+  </h1>
+  <div class="g-number-container preserve">
+    <div class="g-number-rotate preserve">
+      <div class="g-number-group" >
+          <div class="g-number preserve" data-digit="1">
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+          </div>
+          <div class="g-number preserve" data-digit="3">
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+            <div class="g-line preserve translate"></div>
+          </div>
+      </div>
+      <div class="g-number-group">
+        
+        <div class="g-number preserve" data-digit="5">
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+        </div>
+        <div class="g-number preserve" data-digit="8">
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+        </div>
+      </div>
+      <div class="g-number-group" >
+        <div class="g-number preserve" data-digit="0">
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+        </div>
+        <div class="g-number preserve" data-digit="5">
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+          <div class="g-line preserve translate"></div>
+        </div>
+      </div>
+    </div>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  var formatNumber = function(num) {
+    return (num < 10 ? '0' + num : num) + ''
+  }
+  $(function() {
+    var emls = $('.g-number')
+    var draw = function() {
+      var time = new Date()
+ 
+      time = formatNumber(time.getHours()) + formatNumber(time.getMinutes()) + formatNumber(time.getSeconds())
+      for (var i = 0; i < emls.length; i++) {
+        $(emls[i]).attr('data-digit', time[i])
+      }
+    }
+    setInterval(() => {
+      draw()
+    }, 1000);
+    $('h1').click(function() {
+     
+    })
+  })
+</script>
+</body>
+ 
+</html>
