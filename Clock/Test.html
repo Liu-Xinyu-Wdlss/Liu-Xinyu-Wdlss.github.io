@@ -11,6 +11,10 @@
 
   <style>
     /* Dark mode styles */
+    .dark-mode-button:hover {
+      background-color: #999;
+    }
+    
     body.dark-mode {
       background-color: #111111;
     }
@@ -251,7 +255,7 @@ h1{
 <h1>
 </h1>
 <body translate="no" >
-    <h1>Toggle Dark Mode</h1>
+<button class="dark-mode-button" onclick="toggleDarkMode()">Day/Night</button>
   <div class="g-number-container preserve">
     <div class="g-number-rotate preserve">
       <div class="g-number-group" >
@@ -319,6 +323,10 @@ h1{
 </div>
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+    
     var formatNumber = function (num) {
       return (num < 10 ? '0' + num : num) + ''
     }
@@ -337,12 +345,6 @@ h1{
       setInterval(() => {
         draw()
       }, 1000)
-
-      $('h1').click(function () {
-        // Toggle dark mode
-        $('body').toggleClass('dark-mode')
-        $('.g-number .g-line').toggleClass('bright-color')
-      })
     })
   </script>
 </body>
