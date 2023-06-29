@@ -10,18 +10,6 @@
   <title>Number Clock</title>
 
   <style>
-    /* Dark mode styles */
-    .dark-mode-button:hover {
-      background-color: #999;
-    }
-    
-    body.dark-mode {
-      background-color: #111111;
-    }
-
-    body.dark-mode .g-number .g-line {
-      background-color: #FFFFFF;
-    }
 html,body {
   width: 100%;
   height: 100%;
@@ -193,6 +181,18 @@ h1{
   -webkit-transform: translateZ(50px) rotate(40deg);
           transform: translateZ(50px) rotate(40deg);
 }
+
+.dark-mode-button:hover {
+    background-color: #999;
+}
+    
+body.dark-mode {
+    background-color: #111111;
+}
+
+body.dark-mode .g-number .g-line {
+    background-color: #FFFFFF;
+}
  
 .g-number[data-digit="1"] .g-line:nth-child(1)::before, 
 .g-number[data-digit="1"] .g-line:nth-child(1)::after,
@@ -326,7 +326,7 @@ h1{
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
-    
+
     var formatNumber = function (num) {
       return (num < 10 ? '0' + num : num) + ''
     }
