@@ -26,7 +26,7 @@
       padding: 10px;
       background-color: #f9f9f9;
       border-radius: 5px;
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
     }
     
     .page:hover {
@@ -67,6 +67,21 @@
     
     .dark-mode {
       background-color: #222;
+      color: #fff;
+    }
+    
+    .dark-mode .page {
+      background-color: #444;
+      border-color: #888;
+    }
+    
+    .dark-mode .page:hover {
+      transform: scale(1.05);
+      background-color: #666;
+    }
+    
+    .dark-mode .page h2,
+    .dark-mode .page p {
       color: #fff;
     }
   </style>
