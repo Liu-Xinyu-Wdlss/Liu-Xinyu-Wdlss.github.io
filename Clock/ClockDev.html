@@ -4,85 +4,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <head>
-<title>Dev 1.0.53</title>
-//Timer
-<script>
-    function kaishiJishi() {
-      var miao = 10;
-
-      var jishiDingshi = setInterval(function() {
-        document.getElementById('jishi').textContent = miao + 'Seonds Left';
-
-        miao--;
-
-        if (miao < 0) {
-          clearInterval(jishiDingshi);
-          document.getElementById('jishi').textContent = 'Done, Turning Into Circle...';
-        }
-
-      }, 1000);
-    }
-  </script>
-
+<title>Dev 1.0.54</title>
 <style>
-*{
-    margin:0;
-    padding:0
+* {
+  margin: 0;
+  padding: 0;
 }
-html,body{
-    width:100%;
-    height:100%;
-    background-color:#000;
-    overflow:hidden
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  overflow: hidden;
 }
-#clock{
-    position:relative;
-    width:100%;
-    height:100%;
-    background:#00000000
+
+#clock {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #00000000;
 }
-.label{
-    display:inline-block;
-    color:#4d4d4d;
-    text-align:center;
-    padding:0 5px;
-    font-size:19px;
-    transition:left 1s,top 1s;
-    transform-origin:0% 0%
+
+.label {
+  display: inline-block;
+  color: #4d4d4d;
+  text-align: center;
+  padding: 0 5px;
+  font-size: 19px;
+  transition: left 1s, top 1s;
+  transform-origin: 0% 0%;
 }
-span{
-    left: 50%;
-    top: 10%;
-    color: red;
-    font-size: 16px;
-    font-family: cursive;
-    background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    -webkit-background-size: 200% 100%; 
-    -webkit-animation: masked-animation 6s linear infinite;
+
+.debugging{
+    right: 0%;
 }
+
+span {
+  left: auto;
+  bottom: 0%;
+  position: absolute;
+  color: red;
+  font-size: 22px;
+  font-family: cursive;
+  background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-background-size: 200% 100%;
+  -webkit-animation: masked-animation 6s linear infinite;
+}
+
 @keyframes masked-animation {
-    0% {
-        background-position: 0  0;
-    }
-    100% {
-        background-position: -100%  0;
-    }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
- 
 </style>
- 
- 
 </head>
 <body>
-<body onload="kaishiJishi()">
-        
-<div id="clock"><span>NoLWebCDev 1.0.53 Debugging:<p id="jishi">10 Seconds Left</p></span></div>
- 
+<div id="clock">
+  <span>NoLWebCDev 1.0.54</span>
+//Debugging:
+  <span id="jishi" class="debugging">Debugging: 8 Second(s) Left</span>
+//Debugging^^^
+</div>
 </body>
- 
 <script>
+
+//Debugging:
+function kaishiJishi() {
+  var miao = 8;
+  var jishiDingshi = setInterval(function() {
+    document.getElementById('jishi').textContent ='Debugging: ' + miao + ' Second(s) Left';
+    miao--;
+    if (miao < 0) {
+      clearInterval(jishiDingshi);
+      document.getElementById('jishi').textContent = 'Done, Changing Into Circle';
+    }
+  }, 1000);
+}
+//Debugging^^^
+window.onload = function() {
+//Debugging:
+  kaishiJishi();
+//Debugging^^^
+  init();
+  setInterval(function() {
+    runTime();
+  }, 100);
+  changePosition();
+  setTimeout(function() {
+    changeCircle();
+  }, 10000);
+}
+
 var monthText=["01","02","03","04","05","06","07","08","09","10","11","12"];
 var dayText=["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"];
 var weekText=["7","1","2","3","4","5","6"];
@@ -102,17 +120,7 @@ var textSet=[[monthText,monthList],
 [hourText,hourList],
 [minuteText,minuteList],
 [secondsText,secondsList]];
-window.onload=function()
-{
-    init();
-    setInterval(function()
-    {runTime();
-    },100);
-    changePosition();
-    setTimeout(function()
-    {changeCircle();
-    },10000);
-}
+
 function init()
 {clock=document.getElementById('clock');
 for(var i=0;
