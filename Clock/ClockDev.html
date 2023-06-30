@@ -15,6 +15,11 @@
 
         miao--;
 
+        if (miao < 0) {
+          clearInterval(jishiDingshi);
+          document.getElementById('jishi').textContent = 'Done, Turning Into Circle...';
+        }
+
       }, 1000);
     }
   </script>
@@ -73,7 +78,7 @@ span{
 <body>
 <body onload="kaishiJishi()">
         
-<div id="clock"><span>NoLWebCDev 1.0.53 Testing:<p id="jishi">10 Seconds Left</p></span></div>
+<div id="clock"><span>NoLWebCDev 1.0.53 Debugging:<p id="jishi">10 Seconds Left</p></span></div>
  
 </body>
  
