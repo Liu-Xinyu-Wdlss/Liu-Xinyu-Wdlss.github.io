@@ -182,6 +182,18 @@ h1{
           transform: translateZ(50px) rotate(40deg);
 }
 
+.dark-mode-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background-color: #ccc;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .dark-mode-button:hover {
     background-color: #999;
 }
@@ -192,6 +204,10 @@ body.dark-mode {
 
 body.dark-mode .g-number .g-line {
     background-color: #FFFFFF;
+}
+
+body.dark-mode .g-comma {
+  background: #ffffff
 }
  
 .g-number[data-digit="1"] .g-line:nth-child(1)::before, 
