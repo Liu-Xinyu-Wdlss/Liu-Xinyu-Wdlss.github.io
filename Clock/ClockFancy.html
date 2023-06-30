@@ -52,7 +52,19 @@
             transition: all 0.5s;
             float: left;
         }
+        .special{
+            
+        }
         .wrapper  .timebox span{
+            width:40px;
+            color: red;
+            border-radius:5px;
+            font-family: cursive;
+            background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-background-size: 200% 100%; 
+            -webkit-animation: masked-animation 5s linear infinite;
             position: absolute;
             left:50%;
             top:50%;
@@ -61,23 +73,6 @@
             margin-top: -9px;
             margin-left: -20px;
             text-align: right;
-        }
-        .special{
-            width:40px;
-            height:40px;
-            position:absolute;
-            top:50%;
-            left:50%;
-            margin:-22px 0 0 -22px;
-            font-size: 40px;
-            color: red;
-            border-radius:5px;
-            font-family: cursive;
-            background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
-            -webkit-text-fill-color: transparent;/* 将字体设置成透明色 */
-            -webkit-background-clip: text;/* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
-            -webkit-background-size: 200% 100%; 
-            -webkit-animation: masked-animation 5s linear infinite;
         }
         @keyframes masked-animation {
             0% {
@@ -93,13 +88,11 @@
 <body>
  
 <div id="wrapper">
-    <span class="special">
     <div class="timebox yuebox" id="yueBox"></div>
     <div class="timebox riqiBox" id="riqiBox"></div>
     <div class="timebox hourbox" id="hourbox"></div>
     <div class="timebox minutebox" id="minutebox"></div>
     <div class="timebox secondbox" id="secondbox"></div>
-    </span>
 </div>
  
 </body>
