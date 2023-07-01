@@ -98,7 +98,7 @@
 </body>
 <script>
     window.addEventListener('load', function() {
-            var images = [
+            var landscapeImages = [
                 'https://raw.githubusercontent.com/Liu-Xinyu-Wdlss/Liu-Xinyu-Wdlss.github.io/main/Clock/Bg/1082021.jpg',
                 'https://raw.githubusercontent.com/Liu-Xinyu-Wdlss/Liu-Xinyu-Wdlss.github.io/main/Clock/Bg/1084548.png',
                 'https://raw.githubusercontent.com/Liu-Xinyu-Wdlss/Liu-Xinyu-Wdlss.github.io/main/Clock/Bg/1084551.png',
@@ -108,6 +108,16 @@
                 'https://raw.githubusercontent.com/Liu-Xinyu-Wdlss/Liu-Xinyu-Wdlss.github.io/main/Clock/Bg/1145149.jpg',
               ];
 
+            var portraitImages = [
+                'portrait1.jpg',
+                'portrait2.jpg',
+                'portrait3.jpg',
+                'portrait4.jpg'
+            ];
+
+            var isPortrait = window.innerHeight > window.innerWidth;
+
+            var images = isPortrait ? portraitImages : landscapeImages;
             var randomIndex = Math.floor(Math.random() * images.length);
             var randomImage = images[randomIndex];
             document.body.style.backgroundImage = 'url(' + randomImage + ')';
@@ -173,7 +183,7 @@
             if( h<10){
                 h="0"+h;
             }
-            span.innerHTML = h +"点";
+            span.innerHTML = h +"O'Clock";
             hourbox.appendChild( span );
         }
     };
@@ -184,7 +194,7 @@
             if( f<10){
                 f="0"+f;
             }
-            span.innerHTML = f +"分";
+            span.innerHTML = f +"Minute";
             minutebox.appendChild( span );
         }
     };
@@ -195,7 +205,7 @@
             if( miao<10){
                 miao="0"+miao;
             }
-            span.innerHTML = miao +"秒";
+            span.innerHTML = miao +"Second";
             secondbox.appendChild( span );
         }
     };
