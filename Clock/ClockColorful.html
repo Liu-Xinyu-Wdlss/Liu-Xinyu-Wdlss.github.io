@@ -58,7 +58,6 @@
         .wrapper  .timebox span{
             width:40px;
             color: red;
-            border-radius:5px;
             font-family: cursive;
             background-image: -webkit-linear-gradient(left,blue,#66ffff 10%,#cc00ff 20%,#CC00CC 30%, #CCCCFF 40%, #00FFFF 50%,#CCCCFF 60%,#CC00CC 70%,#CC00FF 80%,#66FFFF 90%,blue 100%);
             -webkit-text-fill-color: transparent;
@@ -68,8 +67,8 @@
             position: absolute;
             left:50%;
             top:50%;
-            width: 40px;
-            height: 18px;
+            width: 100px;
+            height: 40px;
             margin-top: -9px;
             margin-left: -20px;
             text-align: right;
@@ -275,11 +274,11 @@
         //  n秒后，摆出圆形
         setTimeout(function(){
             wrapper.className = "wrapper";
-            textRound(yueBox,12,60);
-            textRound(riqiBox,31,100);
-            textRound(hourbox,24,140);
-            textRound(minutebox,60,180);
-            textRound(secondbox,60,220);
+            textRound(yueBox,12,80);
+            textRound(riqiBox,31,120);
+            textRound(hourbox,24,160);
+            textRound(minutebox,60,200);
+            textRound(secondbox,60,240);
             setInterval(function(){
                 let mydate = new Date();
                 rotateTag( yueBox , -30*mydate.getMonth());
