@@ -52,7 +52,7 @@ span {
   bottom: 0%;
   position: absolute;
   color: red;
-  font-size: 22px;
+  font-size: 26px;
   font-family: cursive;
   background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
   -webkit-text-fill-color: transparent;
@@ -86,9 +86,6 @@ span {
 </div>
 <div class="rectangle"></div>
   <span>神っぽいな✧✦✧銀狼۝</span>
-//Debugging:
-  //<span id="jishi" class="debugging">Debugging: 8 Second(s) Left</span>
-//Debugging^^^
 </body>
 <script>
     window.addEventListener('load', function() {
@@ -117,23 +114,8 @@ span {
             document.body.style.backgroundImage = 'url(' + randomImage + ')';
         });
 
-//Debugging:
-//function kaishiJishi() {
-  //var miao = 8;
-  //var jishiDingshi = setInterval(function() {
-    //document.getElementById('jishi').textContent ='Debugging: ' + miao + ' Second(s) Left';
-    //miao--;
-    //if (miao < 0) {
-      //clearInterval(jishiDingshi);
-      //document.getElementById('jishi').textContent = 'Debugging: Done';
-    //}
-  //}, 1000);
-//}
-//Debugging^^^
+
 window.onload = function() {
-//Debugging:
-  //kaishiJishi();
-//Debugging^^^
   init();
   setInterval(function() {
     runTime();
