@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <head>
-<title>Dev 1.0.54</title>
+<title>Dev 1.0.55</title>
 <style>
 * {
   margin: 0;
@@ -27,13 +27,20 @@ body {
 }
 
 .label {
+  position: absolute;
+  color: red;
+  background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-background-size: 200% 100%;
+  -webkit-animation: masked-animation 6s linear infinite;
   display: inline-block;
-  color: #4d4d4d;
   text-align: center;
   padding: 0 5px;
   font-size: 19px;
   transition: left 1s, top 1s;
   transform-origin: 0% 0%;
+  z-index: 114514;
 }
 
 .debugging{
@@ -62,15 +69,26 @@ span {
     background-position: -100% 0;
   }
 }
+.rectangle {
+    position: absolute;
+    left: 52.5%;
+    top: 50%;
+    width: 33.5%;
+    height: 21px;
+    background-color: #ffffff68;
+    border: none;
+    z-index: 1;
+}
 </style>
 </head>
 <body>
 <div id="clock">
-  <span>NoLWebCDev 1.0.54</span>
+</div>
+<div class="rectangle"></div>
+  <span>NoLWebCDev 1.0.55</span>
 //Debugging:
   <span id="jishi" class="debugging">Debugging: 8 Second(s) Left</span>
 //Debugging^^^
-</div>
 </body>
 <script>
 
@@ -82,7 +100,7 @@ function kaishiJishi() {
     miao--;
     if (miao < 0) {
       clearInterval(jishiDingshi);
-      document.getElementById('jishi').textContent = 'Done, Changing Into Circle';
+      document.getElementById('jishi').textContent = 'Debugging: Done';
     }
   }, 1000);
 }
@@ -104,7 +122,7 @@ window.onload = function() {
 var monthText=["01","02","03","04","05","06","07","08","09","10","11","12"];
 var dayText=["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"];
 var weekText=["7","1","2","3","4","5","6"];
-var hourText=["24/00","25/01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
+var hourText=["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"];
 var minuteText=["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"];
 var secondsText=["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"];
 var clock;var monthList=[];
