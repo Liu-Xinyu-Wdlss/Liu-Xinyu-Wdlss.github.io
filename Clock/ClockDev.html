@@ -69,26 +69,31 @@ span {
     background-position: -100% 0;
   }
 }
-.rectangle {
-    position: absolute;
-    left: 52.5%;
-    top: 50%;
-    width: 33.5%;
-    height: 21px;
-    background-color: #ffffff68;
-    border: none;
-    z-index: 1;
+
+.acrylic-rectangle {
+  position: absolute;
+  left: 52.5%;
+  top: 50%;
+  width: 33.5%;
+  height: 21px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: none;
+  z-index: 1;
 }
+
 </style>
 </head>
 <body>
 <div id="clock">
 </div>
-<div class="rectangle"></div>
+<div class="acrylic-rectangle"></div>
   <span>NoLWebCDev 1.0.55</span>
-//Debugging:
+<!-- Degugging: -->
   <span id="jishi" class="debugging">Debugging: 8 Second(s) Left</span>
-//Debugging^^^
+<!-- Debugging^^^ -->
 </body>
 <script>
 
