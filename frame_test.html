@@ -135,11 +135,11 @@
         const clearButton = document.getElementById("clearButton");
 
         clearButton.addEventListener("click", () => {
-            iframe.src = "about:blank"; // Load a blank page in the iframe
-            iframe.style.display = "none"; // Hide the iframe
-            goButton.style.display = "none"; // Hide the "Go" button
-            statusBox.style.display = "none"; // Hide the status box
-            urlInput.value = ""; // Clear the URL input field
+            iframe.src = "about:blank";
+            iframe.style.display = "none";
+            goButton.style.display = "none";
+            statusBox.style.display = "none";
+            urlInput.value = "";
         });
         
         goButton.addEventListener("click", () => {
@@ -189,6 +189,20 @@
         iframe.addEventListener("error", () => {
             goButton.style.display = "none";
             updateStatus("Error: Unable to load page🥺");
+        });
+
+        iframe.addEventListener("load", () => {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const links = iframeDocument.querySelectorAll("a");
+            
+            links.forEach(link => {
+                link.addEventListener("click", event => {
+                    event.preventDefault();
+                    const newUrl = link.href;
+                    iframe.src = newUrl;
+                    updateStatus("Loading...");
+                });
+            });
         });
     </script>
 </body>
