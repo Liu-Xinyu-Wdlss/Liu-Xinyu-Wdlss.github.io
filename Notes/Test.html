@@ -8,6 +8,7 @@
             margin: 0;
             padding: 0;
             background-color: #43423c;
+            transition: filter 0.5s ease;
         }
         h1 {
             text-align: center;
@@ -26,6 +27,18 @@
             width: 100%;
             height: 100%;
         }
+        .brightness-control {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input[type="range"] {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -33,5 +46,21 @@
     <div class="pdf-container">
         <embed class="pdf-embed" src="https://www.orimi.com/pdf-test.pdf" type="application/pdf">
     </div>
+    
+    <div class="brightness-control">
+        <label for="brightness">Adjust Brightness</label>
+        <input type="range" id="brightness" min="0" max="200" value="100">
+    </div>
+
+    <script>
+        const brightnessControl = document.getElementById("brightness");
+        const body = document.body;
+
+        brightnessControl.addEventListener("input", function() {
+            const brightnessValue = this.value;
+            const filterValue = `brightness(${brightnessValue}%)`;
+            body.style.filter = filterValue;
+        });
+    </script>
 </body>
 </html>
