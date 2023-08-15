@@ -206,13 +206,20 @@
             });
         });
 
-        document.addEventListener("click", function(event) {
-    if (event.target.tagName === "A" && event.target.getAttribute("target") === "_blank") {
-        event.preventDefault(); // Prevent the default link behavior
-        const iframeParent = window.parent.document.getElementById("embeddedFrame");
-        iframeParent.src = event.target.href; // Set the src of the parent iframe
-    }
-});
+        // Add this event listener to capture link clicks within the iframe
+        iframe.addEventListener("load", () => {
+            // Attach the click event listener to all links in the loaded page
+            const iframeDoc = iframe.contentWindow.document;
+            const iframeLinks = iframeDoc.querySelectorAll("a");
+            
+            iframeLinks.forEach(link => {
+                link.addEventListener("click", event => {
+                    event.preventDefault(); // Prevent opening in a new tab/window
+                    const linkUrl = link.href;
+                    iframe.src = linkUrl; // Load the link's URL in the iframe
+                });
+            });
+        });
     </script>
 </body>
 </html>
