@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>3 E-Maths Summary</title>
+    <title>Better PDF Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,8 +35,9 @@
         .brightness-control {
             width: 100%;
             max-width: 400px;
-            margin: 20px auto;
+            margin: 10px auto;
             background-color: #505050;
+            color: #fff;
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -44,30 +45,43 @@
         input[type="range"] {
             width: 100%;
         }
+        .file-input {
+            display: block;
+            margin: 10px auto;
+        }
     </style>
 </head>
 <body>
-    <h1>3 E-Maths Summary</h1>
+    <h1>Better PDF Viewer</h1>
 
     <div class="brightness-control">
         <label for="brightness">Adjust Brightness</label>
         <input type="range" id="brightness" min="0" max="200" value="100">
     </div>
 
-    <h2><a href="https://liu-xinyu-wdlss.github.io/Notes/Main" target="_blank">Return</a></h2>
-
+    <input type="file" class="file-input" id="pdf-input">
     <div class="pdf-container">
-        <embed class="pdf-embed" src="TBA" type="application/pdf">
+        <embed class="pdf-embed" id="pdf-embed" type="application/pdf">
     </div>
 
     <script>
         const brightnessControl = document.getElementById("brightness");
         const body = document.body;
+        const pdfEmbed = document.getElementById("pdf-embed");
+        const pdfInput = document.getElementById("pdf-input");
 
         brightnessControl.addEventListener("input", function() {
             const brightnessValue = this.value;
             const filterValue = `brightness(${brightnessValue}%)`;
             body.style.filter = filterValue;
+        });
+
+        pdfInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                pdfEmbed.setAttribute("src", fileURL);
+            }
         });
     </script>
 </body>
