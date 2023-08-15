@@ -204,6 +204,14 @@
                 });
             });
         });
+
+        document.addEventListener("click", function(event) {
+    if (event.target.tagName === "A" && event.target.getAttribute("target") === "_blank") {
+        event.preventDefault(); // Prevent the default link behavior
+        const iframeParent = window.parent.document.getElementById("embeddedFrame");
+        iframeParent.src = event.target.href; // Set the src of the parent iframe
+    }
+});
     </script>
 </body>
 </html>
