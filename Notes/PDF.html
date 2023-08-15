@@ -49,10 +49,27 @@
             display: block;
             margin: 10px auto;
         }
+        .warm-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 214, 170, 0.7); /* Warm color with transparency */
+            pointer-events: none; /* Allow interactions with elements underneath */
+            z-index: 9999; /* Place it above other elements */
+            display: none; /* Start as hidden */
+        }
+        .warm-mode {
+            background-color: #5e594b;
+        }
     </style>
 </head>
 <body>
     <h1>Better PDF Viewer</h1>
+
+    <button id="warmButton">Eye Protect</button>
+    <div class="warm-overlay"></div>
 
     <div class="brightness-control">
         <label for="brightness">Adjust Brightness</label>
@@ -82,6 +99,11 @@
                 const fileURL = URL.createObjectURL(file);
                 pdfEmbed.setAttribute("src", fileURL);
             }
+        });
+        
+        warmButton.addEventListener("click", function() {
+            body.classList.toggle("warm-mode");
+            warmOverlay.style.display = body.classList.contains("warm-mode") ? "block" : "none";
         });
     </script>
 </body>
