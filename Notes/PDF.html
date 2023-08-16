@@ -23,7 +23,7 @@
         }
         .pdf-container {
             width: 800px;
-            height: 600px;
+            height: 1000px;
             margin: 0 auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             overflow: hidden;
@@ -100,7 +100,7 @@
                 pdfEmbed.setAttribute("src", fileURL);
             }
         });
-        
+
         warmButton.addEventListener("click", function() {
             body.classList.toggle("warm-mode");
             warmOverlay.style.display = body.classList.contains("warm-mode") ? "block" : "none";
