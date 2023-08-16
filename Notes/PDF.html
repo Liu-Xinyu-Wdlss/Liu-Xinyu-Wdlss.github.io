@@ -55,15 +55,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 214, 170, 0.7); /* Warm color with transparency */
-            pointer-events: none; /* Allow interactions with elements underneath */
-            z-index: 9999; /* Place it above other elements */
-            display: none; /* Start as hidden */
+            background-color: rgba(97, 81, 63, 0.7);
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
         }
         .warmButton{
             border-radius: 5px;
             margin-top: 5px;
             margin-left: 5px;
+            text-align: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -104,8 +106,8 @@
         });
 
         warmButton.addEventListener("click", function() {
-            body.classList.toggle("warm-mode");
-            warmOverlay.style.display = body.classList.contains("warm-mode") ? "block" : "none";
+            body.classList.toggle("warm-overla");
+            warmOverlay.style.display = body.classList.contains("warm-overlay") ? "block" : "none";
         });
     </script>
 </body>
