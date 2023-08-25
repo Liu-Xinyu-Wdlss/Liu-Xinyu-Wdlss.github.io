@@ -87,6 +87,48 @@
             background-color: #0056b3;
         }
 
+        /*
+            ↓home-page      ↑log-in
+        */
+
+        .home-page {
+            width: 800px;
+            height: 450px;
+            border: 1px solid black;
+            display: flex;
+        }
+
+        .home-page .left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .home-page .left img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .home-page .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 20px;
+            border-left: 1px solid black;
+        }
+
+        .home-page .message-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -104,7 +146,27 @@
                 <button type="submit">Log In</button>
             </form>
         </div>
+
+        <!---log-in↑ home-page↓-->
+
+        <div class="home-page">
+            <div class="left">
+                <img src="https://drive.google.com/uc?id=1Rj7wgx-QIJieaE-Vt6F0QvguJswyWOo3" alt="Timetable">
+            </div>
+            <div class="right">
+                <div class="message-box">
+                    <p>Message 1</p>
+                </div>
+                <div class="message-box">
+                    <p>Message 2</p>
+                </div>
+                <div class="message-box">
+                    <p>Message 3</p>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <h1>Server Side:</h1>
