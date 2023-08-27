@@ -119,8 +119,7 @@
         <div class="nav-link" id="home-link">Home</div>
         <div class="nav-link" id="qna-link">Q&A</div>
         <div class="nav-link" id="contacts-link">Contacts</div>
-        <div class="nav-link" id="account-link">Account</div>
-        <div class="nav-link" id="settings-link">Settings</div>
+        <div class="nav-link" id="account-link">Account&Settings</div>
       </div>
     </div>
   </div>
@@ -161,9 +160,6 @@
         case 'account-link':
           loadAccountPage();
           break;
-        case 'settings-link':
-          loadSettingsPage();
-          break;
         default:
           break;
       }
@@ -181,8 +177,7 @@
         <div class="nav-link" id="home-link">Home</div>
         <div class="nav-link" id="qna-link">Q&A</div>
         <div class="nav-link" id="contacts-link">Contacts</div>
-        <div class="nav-link" id="account-link">Account</div>
-        <div class="nav-link" id="settings-link">Settings</div>
+        <div class="nav-link" id="account-link">Account&Settings</div>
       </div>
     `;
   }
@@ -196,8 +191,7 @@
         <div class="nav-link" id="home-link">Home</div>
         <div class="nav-link" id="qna-link">Q&A</div>
         <div class="nav-link" id="contacts-link">Contacts</div>
-        <div class="nav-link" id="account-link">Account</div>
-        <div class="nav-link" id="settings-link">Settings</div>
+        <div class="nav-link" id="account-link">Account&Settings</div>
         </div>
     `;
   }
@@ -213,42 +207,25 @@
         <div class="nav-link" id="home-link">Home</div>
         <div class="nav-link" id="qna-link">Q&A</div>
         <div class="nav-link" id="contacts-link">Contacts</div>
-        <div class="nav-link" id="account-link">Account</div>
-        <div class="nav-link" id="settings-link">Settings</div>
+        <div class="nav-link" id="account-link">Account&Settings</div>
         </div>
     `;
   }
 
     function loadAccountPage() {
     document.getElementById('content').innerHTML = `
-      <h3>Students Gateway Account Page</h3>
+      <h3>Students Gateway Account&Settings Page</h3>
         <p>Test content.</p>
         
         <div class="navbar">
         <div class="nav-link" id="home-link">Home</div>
         <div class="nav-link" id="qna-link">Q&A</div>
         <div class="nav-link" id="contacts-link">Contacts</div>
-        <div class="nav-link" id="account-link">Account</div>
-        <div class="nav-link" id="settings-link">Settings</div>
+        <div class="nav-link" id="account-link">Account&Settings</div>
         </div>
     `;
   }
   
-  function loadSettingsPage() {
-    document.getElementById('content').innerHTML = `
-      <h3>Settings</h3>
-        <p>Nightmode: off</p>
-        <p>...</p>
-        
-        <div class="navbar">
-        <div class="nav-link" id="home-link">Home</div>
-        <div class="nav-link" id="qna-link">Q&A</div>
-        <div class="nav-link" id="contacts-link">Contacts</div>
-        <div class="nav-link" id="account-link">Account</div>
-        <div class="nav-link" id="settings-link">Settings</div>
-        </div>
-    `;
-  }
   </script>
 </body>
 </html>
