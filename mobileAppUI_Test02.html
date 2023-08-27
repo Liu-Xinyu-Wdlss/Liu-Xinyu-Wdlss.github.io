@@ -135,16 +135,18 @@
       if (username === "NRIC" && password === "2023") { 
         document.getElementById('content').style.display = 'block';
         document.getElementById('login-form').style.display = 'none';
+        setupNavigation();
       } else {
         errorMessage.textContent = "Incorrect username or password.";
       }
     });
     
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.navbar').addEventListener('click', function(event) {
-    const target = event.target;
-    
-    if (target.classList.contains('nav-link')) {
+    function setupNavigation() {
+    const navbar = document.querySelector('.navbar');
+    navbar.addEventListener('click', function(event) {
+      const target = event.target;
+
+      if (target.classList.contains('nav-link')) {
       const linkId = target.id;
       switch (linkId) {
         case 'home-link':
@@ -167,8 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       event.preventDefault();
     }
-  });
-});
+    });
+  }
     
     function loadHomePage() {
     document.getElementById('content').innerHTML = `
