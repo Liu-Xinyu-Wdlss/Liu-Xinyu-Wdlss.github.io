@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mobile App UI Test 02</title>
+  <style>
+    img {
+        max-width: 90%;
+        height: auto;
+        border-radius: 10px;
+        padding: 20px;
+        position: flex;
+        align-items: center;
+        justify-content: center;
+        left: 50%;
+    }
+    h1 {
+      position: absolute;
+      left: 27.5%;
+      top: 5%;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 20px;
+      justify-content: center;
+      margin: 0;
+      padding: 10px;
+      background-color: #007bff;
+      color: #f0f0f0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin-top: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .app-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 1080px;
+      height: 1920px;
+      margin-top: 20px;
+      position: relative;
+    }
+    .content {
+      display: none;
+      margin-top: 20px;
+    }
+    .error-message {
+      color: red;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label, input {
+      display: block;
+      width: 80%;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      position: absolute;
+      bottom: 0;
+      width: 90%;
+      border-top: 2px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .nav-link {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<h1>Students Gateway (Users Clients View)</h1>
+  <div class="app-container">
+    <form action="#" method="post" id="login-form">
+      <h2>Login</h2>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Your NRIC (Value: NRIC) " required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password (Value: 2023)" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Login">
+      </div>
+      <p class="error-message" id="error-message"></p>
+    </form>
+    <div class="content" id="content">
+      <h3>Students Gateway Home Page</h3>
+      <img src="https://drive.google.com/uc?id=1Rj7wgx-QIJieaE-Vt6F0QvguJswyWOo3" alt="2R1 Timetable">
+      
+      <div class="navbar">
+        <div class="nav-link" id="home-link">Home</div>
+        <div class="nav-link" id="qna-link">Q&A</div>
+        <div class="nav-link" id="contacts-link">Contacts</div>
+        <div class="nav-link" id="account-link">Account</div>
+        <div class="nav-link" id="settings-link">Settings</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      var errorMessage = document.getElementById('error-message');
+
+      if (username === "NRIC" && password === "2023") { 
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('login-form').style.display = 'none';
+      } else {
+        errorMessage.textContent = "Incorrect username or password.";
+      }
+    });
+    
+    document.getElementById('navbar').addEventListener('click', function(event) {
+    const target = event.target;
+    
+    if (target.classList.contains('nav-link')) {
+      const linkId = target.id;
+      switch (linkId) {
+        case 'home-link':
+          loadHomePage();
+          break;
+        case 'qna-link':
+          loadQnaPage();
+          break;
+        case 'contacts-link':
+          loadContactsPage();
+          break;
+        case 'account-link':
+          loadAccountPage();
+          break;
+        case 'settings-link':
+          loadSettingsPage();
+          break;
+        default:
+          break;
+      }
+    }
+  });
+    
+    function loadHomePage() {
+    document.getElementById('content').innerHTML = `
+      <h3>Students Gateway Home Page</h3>
+      <img src="https://drive.google.com/uc?id=1Rj7wgx-QIJieaE-Vt6F0QvguJswyWOo3" alt="2R1 Timetable">
+      
+      <div class="navbar" id="navbar">
+        <div class="nav-link" id="home-link">Home</div>
+        <div class="nav-link" id="qna-link">Q&A</div>
+        <div class="nav-link" id="contacts-link">Contacts</div>
+        <div class="nav-link" id="account-link">Account</div>
+        <div class="nav-link" id="settings-link">Settings</div>
+      </div>
+    `;
+  }
+    
+    function loadQnaPage() {
+    document.getElementById('content').innerHTML = `
+      <h3>Students Gateway Q&A Page</h3>
+        <p>Test content.</p>
+        
+        <div class="navbar">
+        <div class="nav-link" id="home-link">Home</div>
+        <div class="nav-link" id="qna-link">Q&A</div>
+        <div class="nav-link" id="contacts-link">Contacts</div>
+        <div class="nav-link" id="account-link">Account</div>
+        <div class="nav-link" id="settings-link">Settings</div>
+        </div>
+    `;
+  }
+  
+  function loadContactsPage() {
+    document.getElementById('content').innerHTML = `
+      <h3>Students Gateway Contacts Page</h3>
+        <p>Form Teacher -- Name -- 98765432 -- Name@moe.edu.sg</p>
+        <p>Maths Teacher -- Name -- 98765432 -- Name@moe.edu.sg</p>
+        <p>...</p>
+        
+        <div class="navbar">
+        <div class="nav-link" id="home-link">Home</div>
+        <div class="nav-link" id="qna-link">Q&A</div>
+        <div class="nav-link" id="contacts-link">Contacts</div>
+        <div class="nav-link" id="account-link">Account</div>
+        <div class="nav-link" id="settings-link">Settings</div>
+        </div>
+    `;
+  }
+
+    function loadAccountPage() {
+    document.getElementById('content').innerHTML = `
+      <h3>Students Gateway Account Page</h3>
+        <p>Test content.</p>
+        
+        <div class="navbar">
+        <div class="nav-link" id="home-link">Home</div>
+        <div class="nav-link" id="qna-link">Q&A</div>
+        <div class="nav-link" id="contacts-link">Contacts</div>
+        <div class="nav-link" id="account-link">Account</div>
+        <div class="nav-link" id="settings-link">Settings</div>
+        </div>
+    `;
+  }
+  
+  function loadSettingsPage() {
+    document.getElementById('content').innerHTML = `
+      <h3>Settings</h3>
+        <p>Nightmode: off</p>
+        <p>...</p>
+        
+        <div class="navbar">
+        <div class="nav-link" id="home-link">Home</div>
+        <div class="nav-link" id="qna-link">Q&A</div>
+        <div class="nav-link" id="contacts-link">Contacts</div>
+        <div class="nav-link" id="account-link">Account</div>
+        <div class="nav-link" id="settings-link">Settings</div>
+        </div>
+    `;
+  }
+  </script>
+</body>
+</html>
