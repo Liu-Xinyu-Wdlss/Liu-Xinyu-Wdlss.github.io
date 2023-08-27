@@ -140,6 +140,7 @@
       }
     });
     
+document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.navbar').addEventListener('click', function(event) {
     const target = event.target;
     
@@ -167,6 +168,7 @@
       event.preventDefault();
     }
   });
+});
     
     function loadHomePage() {
     document.getElementById('content').innerHTML = `
