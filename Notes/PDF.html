@@ -68,7 +68,7 @@
             align-items: center;
         }
         .timer-container {
-            position: absolute;
+            position: fixed;
             top: 10px;
             left: 10px;
             padding: 10px;
@@ -103,18 +103,20 @@
     </div>
 
     <script>
-        const brightnessControl = document.getElementById("brightness");
-        const body = document.body;
-        const pdfEmbed = document.getElementById("pdf-embed");
-        const pdfInput = document.getElementById("pdf-input");
 
         const timerElement = document.getElementById("timer");
         const startButton = document.getElementById("startButton");
         const pauseButton = document.getElementById("pauseButton");
         const clearButton = document.getElementById("clearButton");
 
+        const brightnessControl = document.getElementById("brightness");
+        const body = document.body;
+        const pdfEmbed = document.getElementById("pdf-embed");
+        const pdfInput = document.getElementById("pdf-input");
+
         let timerInterval;
         let startTime = 0;
+        let paused = false;
 
         function updateTimer() {
             const currentTime = Date.now() - startTime;
@@ -126,13 +128,25 @@
         }
 
         startButton.addEventListener("click", function() {
-            startTime = Date.now();
-            clearInterval(timerInterval);
-            timerInterval = setInterval(updateTimer, 1000);
+            if (!paused) {
+                startTime = Date.now();
+                clearInterval(timerInterval);
+                timerInterval = setInterval(updateTimer, 1000);
+            }
         });
 
         pauseButton.addEventListener("click", function() {
-            clearInterval(timerInterval);
+            if (paused) {
+                paused = false;
+                pauseButton.textContent = "Pause";
+                startTime = Date.now() - (pausedTime - startTime);
+                timerInterval = setInterval(updateTimer, 1000);
+            } else {
+                paused = true;
+                pauseButton.textContent = "Resume";
+                pausedTime = Date.now();
+                clearInterval(timerInterval);
+            }
         });
 
         clearButton.addEventListener("click", function() {
