@@ -130,13 +130,15 @@
 
         startButton.addEventListener("click", function() {
             if (!paused) {
-                startButton.textContent = "Restart";
                 startTime = Date.now();
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
             }
-            else {
-                startButton.textContent = "-";
+            else if (paused = true) {
+                startButton.textContent = "Restart";
+            }
+            else if (paused = false) {
+                startButton.textContent = "Restart";
             }
         });
 
