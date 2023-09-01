@@ -79,7 +79,15 @@
         }
     </style>
 </head>
+<header>
+    <div class="timer-container">
+        <span id="timer">00:00:00</span>
+        <button id="startButton">Start</button>
+        <button id="pauseButton">Pause</button>
+    </div>
+</header>
 <body>
+    
     <h1>Better PDF Viewer</h1>
 
     <button id="warmButton">Eye Protect</button>
@@ -93,12 +101,6 @@
     <input type="file" class="file-input" id="pdf-input">
     <div class="pdf-container">
         <embed class="pdf-embed" id="pdf-embed" type="application/pdf">
-    </div>
-
-    <div class="timer-container">
-        <span id="timer">00:00:00</span>
-        <button id="startButton">Start</button>
-        <button id="pauseButton">Pause</button>
     </div>
 
     <script>
