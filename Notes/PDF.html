@@ -99,7 +99,6 @@
         <span id="timer">00:00:00</span>
         <button id="startButton">Start</button>
         <button id="pauseButton">Pause</button>
-        <button id="clearButton">Clear</button>
     </div>
 
     <script>
@@ -133,6 +132,9 @@
                 startTime = Date.now();
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
+            }
+            else {
+                startButton.textContent = "-";
             }
         });
 
