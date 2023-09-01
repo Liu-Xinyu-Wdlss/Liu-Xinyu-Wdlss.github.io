@@ -3,6 +3,16 @@
 <head>
     <title>Better PDF Viewer</title>
     <style>
+        .timer-container {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+            z-index: 9999;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -67,16 +77,6 @@
             text-align: center;
             align-items: center;
         }
-        .timer-container {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            padding: 10px;
-            background-color: #000;
-            color: #fff;
-            font-size: 16px;
-            z-index: 9999;
-        }
     </style>
 </head>
 <body>
@@ -129,6 +129,7 @@
 
         startButton.addEventListener("click", function() {
             if (!paused) {
+                startButton.textContent = "Restart";
                 startTime = Date.now();
                 clearInterval(timerInterval);
                 timerInterval = setInterval(updateTimer, 1000);
@@ -149,12 +150,6 @@
             }
         });
 
-        clearButton.addEventListener("click", function() {
-            clearInterval(timerInterval);
-            startTime = 0;
-            updateTimer();
-        });
-
 
         brightnessControl.addEventListener("input", function() {
             const brightnessValue = this.value;
@@ -171,7 +166,7 @@
         });
 
         warmButton.addEventListener("click", function() {
-            body.classList.toggle("warm-overla");
+            body.classList.toggle("warm-overlay");
             warmOverlay.style.display = body.classList.contains("warm-overlay") ? "block" : "none";
         });
     </script>
