@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-color: #f0f0df;
+            background-color: #dff0f0;
         }
 
         .portrait-content {
@@ -82,54 +82,57 @@
             }
 
             .logo {
-            opacity: 1;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50%;
-            animation: logoAnimation 1s ease-out;
-            animation-delay: 3s;
-            animation-fill-mode: forwards;
+                opacity: 1;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 50%;
+                animation: logoAnimation 1s ease-out;
+                animation-delay: 3s;
+                animation-fill-mode: forwards;
             }
 
             .login-panel {
-            background-color: #dff;
-            padding: 20px;
-            border-radius: 20px;
-            font-size: 30px;
-            align-self: center;
-            align-items: center;
-            width: 75%;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+                position: absolute;
+                top: 20%;
+                left: 50%;
+                background-color: #dff;
+                padding: 20px;
+                border-radius: 20px;
+                font-size: 30px;
+                align-self: center;
+                align-items: center;
+                width: 75%;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
             }
 
-            label [for="NRIC"] {
+            label[for="NRIC"] {
                 text-align: center;
                 color: #007bff;
             }
 
             input[type="text"], input[type="password"] {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
             }
 
             input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            align-self: center;
+                background-color: #007bff;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                align-self: center;
             }
 
             input[type="submit"]:hover {
-            background-color: #0056b3;
+                background-color: #0056b3;
             }
 
-            .content{
+            .content {
                 display: none;
             }
         }
@@ -147,7 +150,7 @@
         <h1>Students Gateway</h1>
         <div class="login-panel">
             <h2>Login</h2>
-            <form>
+            <form id="login-form">
                 <label for="NRIC">NRIC:</label>
                 <input type="text" id="NRIC" name="NRIC" placeholder="Your NRIC (Value: NRIC)" required><br><br>
                 <label for="password">Password:</label>
@@ -156,17 +159,17 @@
             </form>
             <p class="error-message" id="error-message"></p>
         </div>
-        <div class="content" type="content">
-        <p>More contents TBA.</p>
+        <div class="content" id="content">
+            <p>More contents TBA.</p>
         </div>
     </div>
 
-    <div class="foot"><p>V. 230930-E0-δ</p></div>
+    <div class="foot"><p>V. 230930-E1</p></div>
 </body>
 
 <script>
 
-    document.getElementById('.login-panel').addEventListener('submit', function(event) {
+    document.getElementById('login-form').addEventListener('submit', function(event) {
       event.preventDefault();
       var username = document.getElementById('NRIC').value;
       var password = document.getElementById('password').value;
@@ -174,7 +177,7 @@
 
       if (username === "NRIC" && password === "2023") { 
         document.getElementById('content').style.display = 'block';
-        document.getElementById('.login-panel').style.display = 'none';
+        document.querySelector('.login-panel').style.display = 'none';
       } else {
         errorMessage.textContent = "Incorrect NRIC or password.";
       }
