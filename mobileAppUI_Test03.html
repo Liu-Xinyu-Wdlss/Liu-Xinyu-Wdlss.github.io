@@ -60,11 +60,17 @@
             }
         }
 
-        @keyframes logoAnimation {
+        @keyframes logoAnimationIn {
             0% {
                 opacity: 0;
             }
-            50% {
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes logoAnimationOut {
+            0% {
                 opacity: 1;
             }
             100% {
@@ -79,7 +85,8 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 25%;
-            animation: logoAnimation 3s ease-in-out;
+            animation: logoAnimationIn 1.5s ease-in;
+            animation: logoAnimationOut 1.5s ease-out;
             animation-fill-mode: forwards;
         }
     </style>
@@ -97,6 +104,6 @@
         <p>More contents TBA.</p>
     </div>
 
-    <div class="foot"><p>V. 230930-C6</p></div>
+    <div class="foot"><p>V. 230930-C7</p></div>
 </body>
 </html>
