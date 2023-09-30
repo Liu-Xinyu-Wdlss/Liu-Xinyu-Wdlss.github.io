@@ -107,18 +107,22 @@
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
             }
 
-            label[for="NRIC"] {
-                text-align: center;
-                color: #007bff;
+            .login-panel label {
+                display: block;
+                text-align: right;
+                margin-top: 10px;
             }
 
-            input[type="text"], input[type="password"] {
+            .login-panel input[type="text"],
+            .login-panel input[type="password"] {
+                width: 100%;
                 padding: 10px;
                 border: 1px solid #ccc;
                 border-radius: 5px;
+                margin-top: 10px;
             }
 
-            input[type="submit"] {
+            .login-panel input[type="submit"] {
                 background-color: #007bff;
                 color: white;
                 padding: 10px 20px;
@@ -126,9 +130,11 @@
                 border-radius: 10px;
                 cursor: pointer;
                 align-self: center;
+                margin-top: 20px;
+                width: 50%;
             }
 
-            input[type="submit"]:hover {
+            .login-panel input[type="submit"]:hover {
                 background-color: #0056b3;
             }
 
@@ -164,7 +170,7 @@
         </div>
     </div>
 
-    <div class="foot"><p>V. 230930-E1</p></div>
+    <div class="foot"><p>V. 230930-E2</p></div>
 </body>
 
 <script>
