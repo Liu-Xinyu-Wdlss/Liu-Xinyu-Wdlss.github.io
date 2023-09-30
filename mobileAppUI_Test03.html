@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrollbars during animation */
+            overflow: hidden;
         }
 
         .landscape-content {
@@ -38,7 +38,6 @@
             }
         }
 
-        /* CSS animation for logo */
         @keyframes logoAnimation {
             0% {
                 opacity: 0;
@@ -51,17 +50,18 @@
             }
         }
 
-        /* Apply animation to logo */
         .logo {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation: logoAnimation 1.5s ease-in-out infinite;
+            animation: logoAnimation 1.5s ease-in-out;
         }
     </style>
 </head>
 <body>
+    <img class="logo" src="https://drive.google.com/uc?id=1g5ida-BtHFn6tdKE5fIBXQQNCoiVPqPh" type="image/png" alt="Logo">
+
     <div class="landscape-content">
         <h1>Error: Unsupported Devices</h1>
         <p>This page will only be shown on portrait devices.</p>
@@ -72,8 +72,6 @@
         <p>More contents TBA.</p>
     </div>
 
-    <p>V. 230930-A4</p>
-
-    <img class="logo" href="https://drive.google.com/uc?id=1dxm7iM6mWwVFPVke99oRFYP9bnRT4wPK" type="image/svg+xml" alt="Logo">
+    <p>V. 230930-A5</p>
 </body>
 </html>
