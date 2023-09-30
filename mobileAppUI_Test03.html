@@ -92,6 +92,13 @@
             animation-delay: 3s;
             animation-fill-mode: forwards;
             }
+
+            .login-panel {
+            background-color: #dff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
         }
     </style>
 </head>
@@ -105,9 +112,40 @@
 
     <div class="portrait-content">
         <h1>Students Gateway</h1>
+        <div class="login-panel">
+            <h2>Login</h2>
+            <form>
+                <label for="username">NRIC:</label>
+                <input type="text" id="NRIC" name="NRIC" placeholder="Your NRIC (Value: NRIC)" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Your Password (Value: 2023)" required><br><br>
+                <input type="submit" value="Log In">
+            </form>
+            <p class="error-message" id="error-message"></p>
+        </div>
+        <div class="content">
         <p>More contents TBA.</p>
+        </div>
     </div>
 
-    <div class="foot"><p>V. 230930-D5</p></div>
+    <div class="foot"><p>V. 230930-E0-α</p></div>
 </body>
+
+<script>
+
+    document.getElementById('.login-panel').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('NRIC').value;
+      var password = document.getElementById('password').value;
+      var errorMessage = document.getElementById('error-message');
+
+      if (username === "NRIC" && password === "2023") { 
+        document.getElementById('content').style.display = 'block';
+        document.getElementById('.login-panel').style.display = 'none';
+      } else {
+        errorMessage.textContent = "Incorrect NRIC or password.";
+      }
+    });
+    
+</script>
 </html>
