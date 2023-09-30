@@ -31,8 +31,9 @@
         .landscape-content {
                 opacity: 0;
                 display: block;
-                animation: contentAnimation 1s ease-in;
+                animation: contentAnimation 0.25s ease-in;
                 animation-delay: 3s;
+                animation-fill-mode: forwards;
             }
 
         @media screen and (max-width: 1080px) and (min-height: 1920px) {
@@ -52,8 +53,9 @@
             .portrait-content {
                 opacity: 0;
                 display: block;
-                animation: contentAnimation 1s ease-in;
+                animation: contentAnimation 0.25s ease-in;
                 animation-delay: 3s;
+                animation-fill-mode: forwards;
             }
         }
 
@@ -94,6 +96,6 @@
         <p>More contents TBA.</p>
     </div>
 
-    <div class="foot"><p>V. 230930-C4</p></div>
+    <div class="foot"><p>V. 230930-C5</p></div>
 </body>
 </html>
