@@ -15,6 +15,10 @@
             display: none;
         }
 
+        .foot{
+            top: 95%
+        }
+
         @keyframes contentAnimation {
             0% {
                 opacity: 0;
@@ -25,7 +29,7 @@
         }
 
         .landscape-content {
-                display: block;
+                display: none;
                 animation: contentAnimation 1s ease-in;
                 animation-delay: 3s;
             }
@@ -33,10 +37,6 @@
         @media screen and (max-width: 1080px) and (min-height: 1920px) {
             .landscape-content {
                 display: none;
-            }
-
-            .portrait-content {
-                display: block;
             }
 
             h1 {
@@ -62,7 +62,7 @@
         }
 
         .portrait-content {
-                display: block;
+                display: none;
                 animation: contentAnimation 1s ease-in;
                 animation-delay: 3s;
             }
@@ -91,6 +91,6 @@
         <p>More contents TBA.</p>
     </div>
 
-    <p>V. 230930-C1</p>
+    <div class="foot"><p>V. 230930-C2</p></div>
 </body>
 </html>
