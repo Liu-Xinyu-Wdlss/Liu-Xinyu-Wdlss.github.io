@@ -1,1 +1,41 @@
-placeholder
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .landscape-content {
+            display: block;
+        }
+
+        .portrait-content {
+            display: none;
+        }
+
+        @media screen and (max-width: 1080px) and (min-height: 1920px) {
+            .landscape-content {
+                display: none;
+            }
+
+            .portrait-content {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landscape-content">
+        <h1>Landscape Content</h1>
+        <p>This content is displayed in landscape mode.</p>
+    </div>
+
+    <div class="portrait-content">
+        <h1>Portrait Content</h1>
+        <p>This content is displayed in portrait mode (1080p 16:9).</p>
+    </div>
+</body>
+</html>
