@@ -8,6 +8,7 @@
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden; /* Prevent scrollbars during animation */
         }
 
         .landscape-content {
@@ -35,25 +36,28 @@
             p {
                 font-size: 40px;
             }
+        }
 
-            #logo {
-                animation: fadeLogo 1.5s linear;
+        /* CSS animation for logo */
+        @keyframes logoAnimation {
+            0% {
+                opacity: 0;
             }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
 
-            @keyframes fadeLogo {
-                0% {
-                    opacity: 0;
-                }
-                25% {
-                    opacity: 1;
-                }
-                75% {
-                    opacity: 1;
-                }
-                100% {
-                    opacity: 0;
-                }
-            }
+        /* Apply animation to logo */
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: logoAnimation 1.5s ease-in-out infinite;
         }
     </style>
 </head>
@@ -66,8 +70,10 @@
     <div class="portrait-content">
         <h1>Students Gateway</h1>
         <p>More contents TBA.</p>
-        <img id="logo" src="https://drive.google.com/uc?id=1dxm7iM6mWwVFPVke99oRFYP9bnRT4wPK" type="image/svg+xml" alt="Logo">
     </div>
-    <p>V. 230930-A3</p>
+
+    <p>V. 230930-A4</p>
+
+    <img class="logo" href="https://drive.google.com/uc?id=1dxm7iM6mWwVFPVke99oRFYP9bnRT4wPK" type="image/svg+xml" alt="Logo">
 </body>
 </html>
