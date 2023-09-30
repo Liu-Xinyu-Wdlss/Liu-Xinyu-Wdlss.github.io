@@ -20,6 +20,36 @@
             top: 95%;
         }
 
+        @keyframes logoAnimationIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes logoAnimationOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .logo {
+            opacity: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25%;
+            animation: logoAnimationOut 1.5s ease-out;
+            animation-delay: 1.5s;
+            animation-fill-mode: forwards;
+        }
+
         @keyframes contentAnimation {
             0% {
                 opacity: 0;
@@ -58,36 +88,18 @@
                 animation-delay: 3s;
                 animation-fill-mode: forwards;
             }
-        }
 
-        @keyframes logoAnimationIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes logoAnimationOut {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-
-        .logo {
-            opacity: 0;
+            .logo {
+            opacity: 1;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 25%;
-            animation: logoAnimationIn 1.5s ease-in;
+            width: 50%;
             animation: logoAnimationOut 1.5s ease-out;
+            animation-delay: 1.5s;
             animation-fill-mode: forwards;
+            }
         }
     </style>
 </head>
@@ -104,6 +116,6 @@
         <p>More contents TBA.</p>
     </div>
 
-    <div class="foot"><p>V. 230930-C7</p></div>
+    <div class="foot"><p>V. 230930-D1</p></div>
 </body>
 </html>
