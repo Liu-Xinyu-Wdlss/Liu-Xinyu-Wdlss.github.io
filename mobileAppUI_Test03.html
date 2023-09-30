@@ -20,16 +20,7 @@
             top: 95%;
         }
 
-        @keyframes logoAnimationIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes logoAnimationOut {
+        @keyframes logoAnimation {
             0% {
                 opacity: 1;
             }
@@ -45,7 +36,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 25%;
-            animation: logoAnimationOut 1.5s ease-out;
+            animation: logoAnimation 1.5s ease-in;
             animation-delay: 1.5s;
             animation-fill-mode: forwards;
         }
@@ -96,7 +87,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 50%;
-            animation: logoAnimationOut 1.5s ease-out;
+            animation: logoAnimation 1.5s ease-in;
             animation-delay: 1.5s;
             animation-fill-mode: forwards;
             }
@@ -116,6 +107,6 @@
         <p>More contents TBA.</p>
     </div>
 
-    <div class="foot"><p>V. 230930-D1</p></div>
+    <div class="foot"><p>V. 230930-D2</p></div>
 </body>
 </html>
