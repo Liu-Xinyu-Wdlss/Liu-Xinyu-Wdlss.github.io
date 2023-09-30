@@ -11,13 +11,24 @@
             overflow: hidden;
         }
 
-        .landscape-content {
-            display: block;
-        }
-
         .portrait-content {
             display: none;
         }
+
+        @keyframes contentAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .landscape-content {
+                display: block;
+                animation: contentAnimation 1s ease-in;
+                animation-delay: 3s;
+            }
 
         @media screen and (max-width: 1080px) and (min-height: 1920px) {
             .landscape-content {
@@ -50,6 +61,12 @@
             }
         }
 
+        .portrait-content {
+                display: block;
+                animation: contentAnimation 1s ease-in;
+                animation-delay: 3s;
+            }
+
         .logo {
             position: absolute;
             top: 50%;
@@ -57,6 +74,7 @@
             transform: translate(-50%, -50%);
             width: 25%;
             animation: logoAnimation 3s ease-in-out;
+            animation-fill-mode: forwards;
         }
     </style>
 </head>
@@ -73,6 +91,6 @@
         <p>More contents TBA.</p>
     </div>
 
-    <p>V. 230930-B2</p>
+    <p>V. 230930-C1</p>
 </body>
 </html>
