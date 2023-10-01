@@ -68,7 +68,6 @@
 -->
 </blessing>
 
-
 <head>
     <link rel="icon" href="https://drive.google.com/uc?id=1dxm7iM6mWwVFPVke99oRFYP9bnRT4wPK" type="image/svg+xml" sizes="any">
     <title>Students Gateway</title>
@@ -123,7 +122,7 @@
         .landscape-content {
                 opacity: 0;
                 display: block;
-                animation: contentAnimation 0.25s ease-in;
+                animation: contentAnimation 0.1s ease-in;
                 animation-delay: 4s;
                 animation-fill-mode: forwards;
             }
@@ -133,22 +132,23 @@
                 display: none;
             }
 
+            .portrait-content {
+                opacity: 0;
+                display: block;
+                animation: contentAnimation 0.1s ease-in;
+                animation-delay: 4s;
+                animation-fill-mode: forwards;
+            }
+
             h1 {
                 color: #007bff;
-                font-size: 60px;
+                font-size: 80px;
                 text-align: center;
             }
 
             p {
+                padding-left: 10px;
                 font-size: 40px;
-            }
-
-            .portrait-content {
-                opacity: 0;
-                display: block;
-                animation: contentAnimation 0.25s ease-in;
-                animation-delay: 4s;
-                animation-fill-mode: forwards;
             }
 
             .logo {
@@ -213,7 +213,8 @@
                 align-self: center;
                 position: absolute;
                 top: 35%;
-                left: 50%
+                left: 50%;
+                font-size: 60px;
             }
 
             .login-panel input[type="submit"]:hover {
@@ -252,7 +253,7 @@
         </div>
     </div>
 
-    <div class="foot"><p>V. 230930-E5</p></div>
+    <div class="foot"><p>V. 231001-A0</p></div>
 </body>
 
 <script>
