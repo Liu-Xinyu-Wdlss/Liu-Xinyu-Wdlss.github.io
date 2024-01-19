@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Number Generator</h1>
+
+    <form id="numberForm">
+        <label for="numCount">Select the number of random numbers:</label>
+        <select id="numCount" name="numCount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button type="button" onclick="generateNumbers()">Generate</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function generateNumbers() {
+            var numCount = document.getElementById("numCount").value;
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = ""; // Clear previous results
+
+            for (var i = 0; i < numCount; i++) {
+                var randomNumber = Math.floor(Math.random() * 21) - 10; // Generate random number between -10 and 10
+                resultDiv.innerHTML += "Random Number " + (i + 1) + ": " + randomNumber + "<br>";
+            }
+        }
+    </script>
+</body>
+</html>
