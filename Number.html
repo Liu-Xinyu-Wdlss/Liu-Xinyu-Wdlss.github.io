@@ -20,13 +20,13 @@
     <h1>Random Number Generator</h1>
 
     <form id="numberForm">
-        <label for="numCount">Select the number of random numbers:</label>
+        <label for="numCount">No. Of Numbers</label>
         <select id="numCount" name="numCount">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
             <option value="5">5</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
         </select>
         <button type="button" onclick="generateNumbers()">Generate</button>
     </form>
@@ -37,12 +37,16 @@
         function generateNumbers() {
             var numCount = document.getElementById("numCount").value;
             var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = ""; // Clear previous results
+            resultDiv.innerHTML = "";
+
+            var generatedNumbers = [];
 
             for (var i = 0; i < numCount; i++) {
-                var randomNumber = Math.floor(Math.random() * 21) - 10; // Generate random number between -10 and 10
-                resultDiv.innerHTML += "<p>Number " + (i + 1) + ": " + randomNumber + "</p>";
+                var randomNumber = Math.floor(Math.random() * 21) - 10;
+                generatedNumbers.push(randomNumber);
             }
+
+            resultDiv.innerHTML = generatedNumbers.join(', ');
         }
     </script>
 </body>
