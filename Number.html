@@ -14,6 +14,18 @@
         form {
             margin-bottom: 20px;
         }
+
+        select {
+            width: 80px;
+        }
+        
+        #result {
+            margin-bottom: 100px;
+        }
+
+        #pastResults {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -33,12 +45,16 @@
 
     <div id="result"></div>
 
+    <div id="pastResults"></div>
+
+    <button type="button" onclick="clearResults()">Clear Results</button>
+    
     <script>
         function generateNumbers() {
             var numCount = document.getElementById("numCount").value;
             var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "";
-
+            var pastResultsDiv = document.getElementById("pastResults");
+            
             var generatedNumbers = [];
 
             for (var i = 0; i < numCount; i++) {
@@ -46,7 +62,14 @@
                 generatedNumbers.push(randomNumber);
             }
 
-            resultDiv.innerHTML = generatedNumbers.join(', ');
+            resultDiv.innerHTML = "Generated Numbers: " + generatedNumbers.join(', ');
+
+            pastResultsDiv.innerHTML += "<p>Result " + (pastResultsDiv.children.length + 1) + ": " + generatedNumbers.join(', ') + "</p>";
+        }
+        
+        function clearResults() {
+            var pastResultsDiv = document.getElementById("pastResults");
+            pastResultsDiv.innerHTML = "";
         }
     </script>
 </body>
