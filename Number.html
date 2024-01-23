@@ -26,10 +26,70 @@
         #pastResults {
             margin-top: 20px;
         }
+
+        #infoIcon {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        #infoOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        #infoModal {
+            display: none;
+            position: fixed;
+            top: 50px; 
+            left: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        #infoModal p {
+            margin-bottom: 5px;
+        }
+
+        #closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h1>Random Number Generator</h1>
+
+    <div id="infoIcon" onclick="toggleInfoModal()">𝒊</div>
+
+    <div id="infoModal">
+        <div id="closeBtn" onclick="toggleInfoModal()">X</div>
+        <p>Easy - plus and minus, use 2 numbers (multiply *1)</p>
+        <p>Medium - plus and minus and times, use 3 numbers (multiply *2)</p>
+        <p>Hard - plus and minus and divide, use 3 numbers (multiply *3)</p>
+        <p>Extreme - plus and minus and times and divide, use 4 numbers (multiply *5)</p>
+        <p>Hell - plus and minus and times and divide, use 5 numbers (multiply *10)</p>
+    </div>
 
     <form id="numberForm">
         <label for="numCount">No. Of Numbers</label>
@@ -48,8 +108,6 @@
 
     <div id="pastResults"></div>
 
-    
-    
     <script>
         function generateNumbers() {
             var numCount = document.getElementById("numCount").value;
@@ -71,6 +129,11 @@
         function clearResults() {
             var pastResultsDiv = document.getElementById("pastResults");
             pastResultsDiv.innerHTML = "";
+        }
+
+        function toggleInfoModal() {
+            var infoModal = document.getElementById("infoModal");
+            infoModal.style.display = (infoModal.style.display === "none" || infoModal.style.display === "") ? "block" : "none";
         }
     </script>
 </body>
